@@ -1,6 +1,9 @@
 # ADB
 persist.sys.adb.shell=/system/xbin/bash
 
+# ART
+dalvik.vm.dex2oat-swap=false
+
 # Audio
 ro.config.media_vol_steps=20
 ro.config.vc_call_vol_steps=7
