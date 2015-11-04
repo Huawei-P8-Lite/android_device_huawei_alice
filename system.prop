@@ -3,6 +3,7 @@ persist.sys.adb.shell=/system/xbin/bash
 
 # ART
 dalvik.vm.dex2oat-swap=false
+ro.am.reschedule_service=true
 
 # Audio
 ro.config.media_vol_steps=20
