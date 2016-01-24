@@ -25,6 +25,9 @@ camera.hal1.packagelist=com.google.android.GoogleCamera
 ro.connectivity.sta_p2p_coex=false
 wifi.interface=wlan0
 
+# Data properties
+ro.com.android.mobiledata=false
+
 # Display
 ro.sf.lcd_density=320
 ro.opengles.version=131072
