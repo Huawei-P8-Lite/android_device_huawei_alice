@@ -1,0 +1,82 @@
+# Stock
+/dev/mali                 0666   system     graphics
+#/dev/video0               0660   system     camera 
+/dev/cnm_jpu              0660   system     camera
+/dev/cnm_vpu              0660   system     camera
+
+/dev/block/mmcblk0p19     0660   system      system
+/dev/miscnff              0770   root        system
+/dev/hifi_misc            0770   root        audio
+/dev/akm09911_dev         0660   system      system
+
+
+# Graphics
+/dev/ion    0666    system  system
+/dev/mali    0666    system  system
+/dev/pri_lcd    0600	system  system
+
+# Copybit
+/dev/graphics/fb2    0660    system  camera
+
+# Video
+/dev/video*    0660    system  camera
+/dev/media*    0660    system  camera
+/dev/v4l-subdev*    0660    system  camera
+/dev/imgsysbrg_vdec0    0660    system  camera
+/dev/k3vpp0    0660    media  media
+/dev/jpu    0660    media  camera
+
+# Audio
+/dev/hifi_misc    0660    system  audio
+/dev/boardconfig_fs    0660    system  audio
+/dev/tfa9887    0660    media  media
+/dev/hisi_6421_spk    0660    media  media
+
+# Baseband
+/dev/vmodem     0660    radio  radio
+/dev/ttyAMA5    0660    radio  radio
+
+/dev/ttySPI0    0660    root  radio
+/dev/ttySPI1    0660    root  system
+/dev/ttySPI2    0660    root  radio
+/dev/ttySPI3    0660    root  system
+/dev/ttySPI4    0440    root  root
+/dev/ttySPI5    0660    root  system
+/dev/ttySPI6    0660    root  system
+/dev/ttySPI7    0660    root  radio
+/dev/ttySPI8    0440    root  root
+/dev/ttySPI9    0660    root  radio
+/dev/ttySPI10    0660    root  radio
+/dev/ttySPI11    0660    root  system
+/dev/ttySPI12    0440    root  root
+/dev/ttySPI13    0440    root  root
+/dev/ttySPI14    0440    root  root
+
+/dev/memory_throughput    0660    system  system
+/dev/memory_throughput_up_threshold    0660    system  system
+
+/dev/nve0    0770    root  system
+
+/dev/appvcom*    0660    radio  radio
+/dev/appvcom4    0660    media  media
+/dev/appvcom12    0660    media  media
+/dev/appvcom2    0660    system  system
+/dev/appvcom8    0660    system  system
+/dev/appvcomERRLOG    0660    system  system
+
+/dev/tc_ns_client 0660    system  system
+
+# GPS
+/dev/ttyAMA3 0660    system  system
+
+# Bluetooth
+/dev/ttyAMA4 0660    bluetooth  bluetooth
+
+# Wifi
+/dev/rfkill 0660    wifi wifi
+
+# Sensors
+/dev/sensorhub 0660    system  system
+
+# IRDA
+/dev/ttyAMA0 0660    system    system
