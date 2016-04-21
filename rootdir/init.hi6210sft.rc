@@ -35,7 +35,7 @@ on init
     mkdir /storage/usbotg 0700 root root
 
 #    mkdir /mnt/shell/emulated 0700 shell shell
-#   mkdir /storage/emulated 0555 root root
+#    mkdir /storage/emulated 0555 root root
 #    mkdir /mnt/media_rw/sdcard1 0555 root root
 #    mkdir /mnt/media_rw/usbdisk 0555 root root
 #    mkdir /storage/sdcard1 0775 system system
@@ -224,25 +224,17 @@ on post-fs-data
     chown system system /sys/class/leds/green/delay_on
     chmod 664 /sys/class/leds/green/delay_on
 
-    # HDMI
-    #chown system system /sys/devices/e852c000.panel_hdmi/edid
-    #chown system system /sys/devices/e852c000.panel_hdmi/code
-    #chown system system /sys/devices/e852c000.panel_hdmi/s3d
-    #chown system system /sys/devices/e852c000.panel_hdmi/dst
-    #chown system system /sys/devices/e852c000.panel_hdmi/hpd
-    #chown system system /sys/devices/e852c000.panel_hdmi/hdcp
-    #chown system system /sys/devices/e852c000.panel_hdmi/deepcolor
-    #chown system system /sys/devices/e852c000.panel_hdmi/reset
-    #chown system system /sys/devices/e852c000.panel_hdmi/reg
-    #chown system system /sys/devices/e852c000.panel_hdmi/connected
-    #chown system system /sys/devices/e852c000.panel_hdmi/s3dsupport
-    #chown system system /sys/devices/e852c000.panel_hdmi/alledid
-    #chown system system /sys/devices/e852c000.panel_hdmi/audiosupport
-    #chown system system /sys/devices/e852c000.panel_hdmi/bufisfree
-    #chown system system /sys/devices/e852c000.panel_hdmi/framerate
-    #chmod 660 /sys/devices/e852c000.panel_hdmi/bufisfree
-    #chmod 660 /sys/devices/e852c000.panel_hdmi/framerate
-
+	# Camera
+	chmod 664 /dev/cnm_vpu
+    chown system camera /dev/cnm_vpu
+	chmod 664 /dev/cnm_jpu
+    chown system camera /dev/cnm_jpu
+    chmod 770 /proc/hifidsp/hifi
+    chown root audio /proc/hifidsp/hifi
+    mkdir /data/k3_camera/
+    chmod 664 /data/k3_camera/
+    chown media audio /data/k3_camera/
+	
     # Baseband
     mkdir /data/hwzd_logs/3rdcp-log 0775 radio nvram
     mkdir /data/nvram/ 0770 root nvram

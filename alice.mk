@@ -15,6 +15,8 @@
 #
 LOCAL_PATH := device/huawei/alice
 
+TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 720
 DEVICE_PACKAGE_OVERLAYS += device/huawei/alice/overlay
 
 # Ramdisk
@@ -123,7 +125,7 @@ tinycap \
 tinymix \
 tinypcminfo \
 sound_trigger.primary.hi6210sft \
-camera.hi6210sft \
+camera.default \
 libion.huawei
 
 #NFCEE_ACCESS_PATH := vendor/etc/nfcee_access.xml

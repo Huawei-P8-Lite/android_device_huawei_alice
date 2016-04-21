@@ -9,8 +9,8 @@ $(call inherit-product, vendor/omni/config/common.mk)
 $(call inherit-product, vendor/omni/config/gsm.mk)
 
 # Allow tethering without provisioning app
-PRODUCT_PROPERTY_OVERRIDES += \
-    net.tethering.noprovisioning=true
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    net.tethering.noprovisioning=true
 
 # Override product naming for Omni
 PRODUCT_NAME := omni_alice

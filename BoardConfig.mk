@@ -118,7 +118,7 @@ TARGET_SPECIFIC_HEADER_PATH += device/huawei/alice/include
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/alice/bluetooth
 
 # assert
-TARGET_OTA_ASSERT_DEVICE := alice
+TARGET_OTA_ASSERT_DEVICE := hi6210sft
 
 #SeLinux
 BOARD_SEPOLICY_DIRS += \
