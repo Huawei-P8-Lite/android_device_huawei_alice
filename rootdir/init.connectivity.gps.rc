@@ -28,20 +28,30 @@ on boot
     chmod 660 /sys/class/rfkill/rfkill0/state
 
 
-     chown bluetooth bluetooth /proc/bluetooth/sleep/proto
-     chmod 664 /proc/bluetooth/sleep/proto
-     chown bluetooth bluetooth /proc/bluetooth/sleep/btwrite
-     chmod 664 /proc/bluetooth/sleep/btwrite
-     chown bluetooth bluetooth /proc/bluetooth/sleep/btwake
-     chmod 664 /proc/bluetooth/sleep/btwake
+    chown bluetooth bluetooth /proc/bluetooth/sleep/proto
+    chmod 664 /proc/bluetooth/sleep/proto
+    chown bluetooth bluetooth /proc/bluetooth/sleep/btwrite
+    chmod 664 /proc/bluetooth/sleep/btwrite
+    chown bluetooth bluetooth /proc/bluetooth/sleep/btwake
+    chmod 664 /proc/bluetooth/sleep/btwake
+
+    chmod 660 /dev/ttyAMA2
 
     chmod 770 /system/bin/gpsdaemon
 
+	
 	
 service gpsdaemon /system/bin/gpsdaemon
     class main
     oneshot
 	
+service gpsd /system/bin/glgps -c /data/gps/gpsconfig.xml
+    socket gps seqpacket 660 root root
+    class main
+    user root
+    group system
+    disabled
+
 #service gpsd_47531 /system/bin/bcm47531/glgps -c /data/gps/gpsconfig.xml
 #    socket gps seqpacket 660 root root
 #    class main
