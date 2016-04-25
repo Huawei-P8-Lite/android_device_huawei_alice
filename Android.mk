@@ -20,5 +20,11 @@ ifneq ($(filter alice, $(TARGET_DEVICE)),)
 endif
 
 #copy kernel for aosp
-$(info $(shell mkdir -p out/target/product/alice/))
-$(info $(shell cp device/huawei/alice/kernel out/target/product/alice/))
+ifneq ($(filter aosp, $(TARGET_DEVICE)),)
+   $(info $(shell mkdir -p out/target/product/alice/))
+   $(info $(shell cp device/huawei/alice/kernel out/target/product/alice/))
+endif
+
+#copy kernel ts files to overcome an error while building
+$(info $(shell mkdir -p out/target/product/alice/obj/KERNEL_OBJ/firmware/))
+$(info $(shell cp -avr kernel/huawei/alice/firmware/ts out/target/product/alice/obj/KERNEL_OBJ/firmware/))

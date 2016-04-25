@@ -17,9 +17,12 @@
 LOCAL_PATH := device/huawei/alice
 
 # Screen density
-PRODUCT_AAPT_PREF_CONFIG := 294dpi
-PRODUCT_AAPT_PREBUILT_DPI := xhdpi hdpi
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
+
+# A list of dpis to select prebuilt apk, in precedence order (from omnirom/angler)
+PRODUCT_AAPT_PREBUILT_DPI := xhdpi hdpi
+
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
