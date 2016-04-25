@@ -11,6 +11,6 @@
 /dev/block/mmcblk0p34                                    /cache              ext4        noatime,nosuid,nodev,discard                     wait,check
 /dev/block/mmcblk0p40                                    /data               ext4        noatime,nosuid,nodev,discard,noauto_da_alloc     wait,check,encryptable=footer
 
-/dev/block/mmcblk1p1                                     auto                auto        defaults                                         voldmanaged=sdcard1:auto,noemulatedsd
-/devices/hisi-usb-otg/usb*                               auto                auto        defaults                                         voldmanaged=usbdisk:auto
+/dev/block/mmcblk1p1*                                    auto                vfat        defaults                                         wait,voldmanaged=sdcard1:auto,noemulatedsd
+/devices/hisi-usb-otg/usb*                               auto                auto        defaults                                         wait,voldmanaged=usbdisk:auto
 /dev/block/zram0                                         none                swap        defaults                                         zramsize=268435456

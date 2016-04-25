@@ -78,11 +78,6 @@ WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4343s_apsta_h
 WIFI_DRIVER_FW_PATH_P2P          := "/system/vendor/firmware/fw_bcm4343s_p2p_hw.bin"
 WIFI_BAND                        := 802_11_ABG
 
-# Bleutooth
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUEDROID_VENDOR_CONF := device/huawei/alice/bluetooth/vnd_hi6210sft.txt
-
 # Libc extensions
 BOARD_PROVIDES_ADDITIONAL_BIONIC_STATIC_LIBS += libc_huawei_symbols
 
@@ -92,7 +87,6 @@ USE_OPENGL_RENDERER := true
 
 # ?????
 
-BOARD_USES_ALSA_AUDIO := true
 TARGET_CPU_SMP := true
 
 
@@ -104,7 +98,7 @@ TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CONFIG := hisi_hi6210sft_defconfig
 TARGET_USES_UNCOMPRESSED_KERNEL := true
 BOARD_KERNEL_IMAGE_NAME := Image
-#TARGET_PREBUILT_KERNEL := device/huawei/alice/kernel
+TARGET_PREBUILT_KERNEL := device/huawei/alice/kernel
 
 BOARD_KERNEL_CMDLINE := hisi_dma_print=0 vmalloc=384M maxcpus=8 coherent_pool=512K no_irq_affinity androidboot.selinux=permissive ate_enable=true enforcing=0
 BOARD_KERNEL_BASE := 0x07478000
@@ -153,19 +147,21 @@ TARGET_RECOVERY_PIXEL_FORMAT := ABGR_8888
 BOARD_RECOVERY_NEEDS_FBIOPAN_DISPLAY := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 
+# Audio
+BOARD_USES_ALSA_AUDIO := true
+
 # Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/alice/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/huawei/alice/bluetooth/vnd_hi6210sft.txt
 
 # assert
 TARGET_OTA_ASSERT_DEVICE := hi6210sft,p8litekirin,alice,HI6210SFT,ALICE,P8LITEKIRIN
 
 #SeLinux
-BOARD_SEPOLICY_DIRS += \
-	device/huawei/alice/selinux
-
-BOARD_SEPOLICY_UNION += \
-	file_contexts \
-	installd.te
+BOARD_SEPOLICY_DIRS  += device/huawei/alice/selinux
+BOARD_SEPOLICY_UNION += file_contexts
 
 # inherit from the proprietary version
 -include vendor/huawei/alice/BoardConfigVendor.mk
