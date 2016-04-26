@@ -17,7 +17,7 @@
 LOCAL_PATH := device/huawei/alice
 
 # Screen density
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
+PRODUCT_AAPT_CONFIG := xhdpi hdpi normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 # A list of dpis to select prebuilt apk, in precedence order (from omnirom/angler)
@@ -27,7 +27,8 @@ TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=320
+    ro.sf.lcd_density=320 \
+    hw.lcd.lcd_density=320
 
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
@@ -39,7 +40,6 @@ PRODUCT_COPY_FILES := \
     $(LOCAL_PATH)/rootdir/fstab.hi6210sft:root/fstab.hi6210sft \
     $(LOCAL_PATH)/rootdir/init.hi6210sft.rc:root/init.hi6210sft.rc \
     $(LOCAL_PATH)/rootdir/init.hi6210sft.usb.rc:root/init.hi6210sft.usb.rc \
-    $(LOCAL_PATH)/rootdir/init.connectivity.gps.rc:root/init.connectivity.gps.rc \
     $(LOCAL_PATH)/rootdir/ueventd.hi6210sft.rc:root/ueventd.hi6210sft.rc 
 
 # Recovery
@@ -50,6 +50,22 @@ PRODUCT_COPY_FILES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
 ADDITIONAL_DEFAULT_PROPERTIES += ro.zygote=zygote64_32
 PRODUCT_COPY_FILES += system/core/rootdir/init.zygote64_32.rc:root/init.zygote64_32.rc
+
+# test selinux perm
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.boot.selinux=0
+ADDITIONAL_DEFAULT_PROPERTIES += ro.boot.selinux=0
+
+# testing
+PRODUCT_PACKAGES += \
+    libGLES_android \
+    libion \
+	libion.huawei
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version=131072 \
+    debug.hwui.render_dirty_regions=false \
+    persist.sys.use_dithering=2 \
+    persist.sys.strictmode.disable=1
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -141,5 +157,28 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+    make_ext4fs \
+    setup_fs
+
+# Misc packages
+PRODUCT_PACKAGES += \
+    OmniTorch \
+    com.android.future.usb.accessory
+
+# Non-device-specific props
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.com.google.locationfeatures=1 \
+    ro.setupwizard.mode=OPTIONAL \
+    ro.setupwizard.enable_bypass=1 \
+    ro.config.sync=yes \
+    ro.config.ntp.server_poll=86400000 \
+    ro.config.ntp.clock_sync=1800000 \
+    ro.config.ntp.sync_mode=3 \
+    fw.appops.sys_app=true \
+    android.webview.force_aosp=false
+
+	
 # Include non-opensource parts
 $(call inherit-product, vendor/huawei/alice/device-vendor.mk)

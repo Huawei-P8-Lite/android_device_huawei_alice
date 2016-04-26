@@ -89,7 +89,6 @@ USE_OPENGL_RENDERER := true
 
 TARGET_CPU_SMP := true
 
-
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/huawei/alice
 TARGET_KERNEL_ARCH := arm64
@@ -100,7 +99,7 @@ TARGET_USES_UNCOMPRESSED_KERNEL := true
 BOARD_KERNEL_IMAGE_NAME := Image
 TARGET_PREBUILT_KERNEL := device/huawei/alice/kernel
 
-BOARD_KERNEL_CMDLINE := hisi_dma_print=0 vmalloc=384M maxcpus=8 coherent_pool=512K no_irq_affinity androidboot.selinux=permissive ate_enable=true enforcing=0
+BOARD_KERNEL_CMDLINE := hisi_dma_print=0 vmalloc=384M maxcpus=8 coherent_pool=512K no_irq_affinity enforcing=0 androidboot.selinux=permissive ate_enable=true
 BOARD_KERNEL_BASE := 0x07478000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x07b88000 --tags_offset 0x02988000
