@@ -51,9 +51,9 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
 ADDITIONAL_DEFAULT_PROPERTIES += ro.zygote=zygote64_32
 PRODUCT_COPY_FILES += system/core/rootdir/init.zygote64_32.rc:root/init.zygote64_32.rc
 
-# test selinux perm
+# Selinux settings
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.boot.selinux=0
-ADDITIONAL_DEFAULT_PROPERTIES += ro.boot.selinux=0
+ADDITIONAL_DEFAULT_PROPERTIES      += ro.boot.selinux=0
 
 # testing
 PRODUCT_PACKAGES += \
