@@ -38,6 +38,7 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 # Ramdisk
 PRODUCT_COPY_FILES := \
     $(LOCAL_PATH)/rootdir/fstab.hi6210sft:root/fstab.hi6210sft \
+    $(LOCAL_PATH)/rootdir/fstab.hi6210sft:root/fstab.hi6210sft.swap \
     $(LOCAL_PATH)/rootdir/init.hi6210sft.rc:root/init.hi6210sft.rc \
     $(LOCAL_PATH)/rootdir/init.hi6210sft.usb.rc:root/init.hi6210sft.usb.rc \
     $(LOCAL_PATH)/rootdir/ueventd.hi6210sft.rc:root/ueventd.hi6210sft.rc 
@@ -55,11 +56,11 @@ PRODUCT_COPY_FILES += system/core/rootdir/init.zygote64_32.rc:root/init.zygote64
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.boot.selinux=0
 ADDITIONAL_DEFAULT_PROPERTIES      += ro.boot.selinux=0
 
-# testing
+# Graphics
 PRODUCT_PACKAGES += \
     libGLES_android \
     libion \
-	libion.huawei
+	gralloc.hi6210sft
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
@@ -89,7 +90,8 @@ PRODUCT_PACKAGES += \
 # Wifi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
 PRODUCT_PACKAGES += \
     libnetcmdiface \
