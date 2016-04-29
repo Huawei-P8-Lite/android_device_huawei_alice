@@ -38,14 +38,9 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 # Ramdisk
 PRODUCT_COPY_FILES := \
     $(LOCAL_PATH)/rootdir/fstab.hi6210sft:root/fstab.hi6210sft \
-    $(LOCAL_PATH)/rootdir/fstab.hi6210sft:root/fstab.hi6210sft.swap \
     $(LOCAL_PATH)/rootdir/init.hi6210sft.rc:root/init.hi6210sft.rc \
     $(LOCAL_PATH)/rootdir/init.hi6210sft.usb.rc:root/init.hi6210sft.usb.rc \
     $(LOCAL_PATH)/rootdir/ueventd.hi6210sft.rc:root/ueventd.hi6210sft.rc 
-
-# Recovery
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/rootdir/init.recovery.hi6210sft.rc:root/init.recovery.hi6210sft.rc
 
 # Set zygote config
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
@@ -60,7 +55,8 @@ ADDITIONAL_DEFAULT_PROPERTIES      += ro.boot.selinux=0
 PRODUCT_PACKAGES += \
     libGLES_android \
     libion \
-	gralloc.hi6210sft
+	gralloc.hi6210sft \
+	gatord
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
@@ -89,8 +85,10 @@ PRODUCT_PACKAGES += \
 
 # Wifi
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
     $(LOCAL_PATH)/rootdir/system/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf \
     $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
 PRODUCT_PACKAGES += \
@@ -99,6 +97,9 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf \
     hostapd \
     wpa_supplicant \
+    wpa_supplicant_hisi \
+	wpa_cli_hisi \
+	hostapd_hisi \
     wpa_supplicant.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -109,10 +110,19 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #PRODUCT_COPY_FILES += \
 #    $(LOCAL_PATH)/rootdir/system/etc/device_state_monitor.conf:system/etc/device_state_monitor.conf
 
+# Include BT modules
+$(call inherit-product-if-exists, hardware/ti/wpan/ti-wpan-products.mk)
+
 # GPS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/etc/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/rootdir/system/etc/gpsconfig.xml:system/etc/gpsconfig.xml
+
+#Bluetooth
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/auto_pair_devlist.conf:system/etc/bluetooth/auto_pair_devlist.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -123,9 +133,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
     $(LOCAL_PATH)/rootdir/system/etc/media_codecs.xml:system/etc/media_codecs.xml \
 	$(LOCAL_PATH)/rootdir/system/etc/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
-    $(LOCAL_PATH)/rootdir/system/etc/vdec_atlas.cfg:system/etc/vdec_atlas.cfg \
-    $(LOCAL_PATH)/rootdir/system/etc/topazhp.cfg:system/etc/topazhp.cfg
-	
+	$(LOCAL_PATH)/rootdir/system/etc/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+	$(LOCAL_PATH)/rootdir/system/etc/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+	$(LOCAL_PATH)/rootdir/system/etc/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+
 #PRODUCT_PACKAGES += \
 #    camera.default
 
@@ -144,6 +155,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \

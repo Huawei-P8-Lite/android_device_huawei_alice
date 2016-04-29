@@ -1,6 +1,4 @@
-add_lunch_combo aosp_alice-user
-add_lunch_combo aosp_alice-userdebug
-add_lunch_combo aosp_alice-eng
-add_lunch_combo omni_alice-user
-add_lunch_combo omni_alice-userdebug
-add_lunch_combo omni_alice-eng
+for i in eng userdebug user; do
+	add_lunch_combo aosp_alice-${i}
+    add_lunch_combo omni_alice-${i}
+done

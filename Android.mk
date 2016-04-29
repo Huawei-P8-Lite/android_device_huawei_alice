@@ -28,3 +28,35 @@ endif
 #copy kernel ts files to overcome an error while building
 $(info $(shell mkdir -p out/target/product/alice/obj/KERNEL_OBJ/firmware/))
 $(info $(shell cp -avr kernel/huawei/alice/firmware/ts out/target/product/alice/obj/KERNEL_OBJ/firmware/))
+
+#
+### Try some little hack to copy all vendor files :D
+#
+
+# sbin folder
+$(info $(shell mkdir -p out/target/product/alice/root/sbin/))
+$(info $(shell cp -avr vendor/huawei/alice/proprietary/system/sbin out/target/product/alice/root/))
+
+# bin folder
+$(info $(shell mkdir -p out/target/product/alice/system/bin/))
+$(info $(shell cp -avr vendor/huawei/alice/proprietary/system/bin out/target/product/alice/system/))
+
+# etc folder
+$(info $(shell mkdir -p out/target/product/alice/system/etc/))
+$(info $(shell cp -avr vendor/huawei/alice/proprietary/system/etc out/target/product/alice/system/))
+
+# lib folder
+$(info $(shell mkdir -p out/target/product/alice/system/lib/))
+$(info $(shell cp -avr vendor/huawei/alice/proprietary/system/lib out/target/product/alice/system/))
+
+# lib64 folder
+$(info $(shell mkdir -p out/target/product/alice/system/lib64/))
+$(info $(shell cp -avr vendor/huawei/alice/proprietary/system/lib64 out/target/product/alice/system/))
+
+# vendor folder
+$(info $(shell mkdir -p out/target/product/alice/system/vendor/))
+$(info $(shell cp -avr vendor/huawei/alice/proprietary/system/vendor out/target/product/alice/system/))
+
+# xbin folder
+$(info $(shell mkdir -p out/target/product/alice/system/xbin/))
+$(info $(shell cp -avr vendor/huawei/alice/proprietary/system/xbin out/target/product/alice/system/))
