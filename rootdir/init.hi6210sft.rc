@@ -305,6 +305,22 @@ on early-boot
 on fs
     loglevel 9
 
+    restorecon       /sys/class/devfreq/gpufreq/min_freq
+    restorecon       /sys/class/devfreq/gpufreq/max_freq
+    restorecon       /sys/class/devfreq/ddrfreq/min_freq
+    restorecon       /sys/class/devfreq/ddrfreq/max_freq
+    restorecon       /sys/class/graphics/fb0/lcd_cabc_mode
+    restorecon       /sys/class/leds/torch/flash_thermal_protect
+    restorecon       /sys/class/leds/red/brightness
+    restorecon       /sys/class/leds/green/brightness
+    restorecon       /sys/class/leds/blue/brightness
+    restorecon       /sys/class/leds/lcd_backlight0/brightness
+    restorecon       /sys/class/hw_power/charger/charge_data/enable_charger
+    restorecon       /sys/class/leds/torch/brightnesss
+    restorecon       /proc/touchscreen/rawdata
+    restorecon       /sys/class/leds/torch/brightness
+    restorecon       /sys/touchscreen/command
+
     write /sys/block/zram0/disksize 268435456
     mount_all ./fstab.hi6210sft
     swapon_all ./fstab.hi6210sft
@@ -716,6 +732,18 @@ service oeminfo_nvm /system/bin/oeminfo_nvm_server
     class core
     ioprio rt 4
 
+service diagserver /system/bin/diagserver
+    class main
+    user root
+
+service goldeneye /system/bin/goldeneye
+    class main
+    user root
+
+service data_cleanner /system/bin/data_cleaner
+    class core
+    oneshot
+	
 service hwnffserver /system/bin/hwnffserver
     class main
     socket hwnff stream 0660 root mount
@@ -821,6 +849,209 @@ service ril-daemon1 /system/bin/rild -c 1
     user root
     group radio cache inet misc audio sdcard_r sdcard_rw log
 
+#extra services
+service modemlogcat_VIA /system/bin/modemlogcat_via -t /dev/ttySPI1 -c /system/etc/modemConfig/viacbp82d_log.bcfg -p /data/hwzd_logs/cp_log/ -r 30 -n 9
+    class late_start
+    user root
+    group system
+    disabled
+    oneshot
+
+on property:ro.runmode=*
+    start ccorecat
+
+on property:ro.runmode=*
+    start telemntncat
+
+service kerneldump /system/etc/kerneldump.sh
+    class main
+    user root
+    group system
+    oneshot
+    
+service ccorecat /system/bin/dmesgcat -i /dev/log/ccore -e s -r 4096 -z 2 -n 5 -f /data/hisi_logs/cp_log/coredump/ccorecat-log
+    class late_start
+    user root
+    group system
+    disabled
+
+service telemntncat /system/bin/dmesgcat -i /proc/telemntn -e b -r 10240 -z 3 -n 1 -f /data/hisi_logs/ap_log/telemntncat-log
+    class late_start
+    user root
+    group system
+    disabled
+
+	
+service exch /system/etc/log/android_panic.sh
+    class main
+    user root
+    group system
+    oneshot
+
+service akmd09911 /system/bin/akmd09911
+    class main
+    user system
+    group system
+
+on property:ro.runmode=factory	
+    chown system system /proc/balong/ddr_test/hisi_dt_on
+    chown system system /proc/balong/ddr_test/hisi_dt_off
+
+service netd /system/bin/netd
+    class main 
+    socket netd stream 0660 root system
+    socket dnsproxyd stream 0660 root inet 
+    socket mdns stream 0660 root system
+
+service hi110x_ecpt /system/bin/hi110x_except_logd -wbg -p /data/hwlogdir/exception/ -n 30 -c
+    class main
+    user system
+    group system root
+    disabled
+
+service hi110x_logd /system/bin/hi110x_logd
+    class main
+    user system
+    group system root media_rw
+    disabled
+
+service chr_logd /system/bin/chr_logd
+    class main
+    user system
+    group system root bluetooth wifi
+    disabled
+
+service octty /system/bin/octty
+    class main
+    user system
+    group system bluetooth root media
+    disabled
+
+service oam_app /system/bin/oam_app
+    class main
+    user system
+    group system root wifi bluetooth
+    disabled
+    oneshot
+
+service hisi_bfg /system/bin/hisi_connectivity.sh
+    user root
+    group system
+    disabled
+    oneshot
+
+on property:ro.debuggable=*
+    start octty
+    start hisi_bfg
+
+on property:init.svc.hisi_bfg=stopped
+    write /proc/wifi_enable/wifi_start 1
+    write /proc/oam_enable/oam_start 1
+    start oam_app
+    start chr_logd
+    start hsgnss
+    start agnsscontrol
+    start agnsslog
+    start supl20clientd
+    start watchlssd
+    start hi110x_logd
+    start hi110x_ecpt
+
+service hsgnss /system/bin/gnss_engine -normal
+    class main
+    user system
+    group system inet root
+    disabled
+
+service agnsscontrol /system/bin/agnsscontrol -normal
+    class main
+    user system
+    group system inet root
+    disabled
+
+service supl20clientd /system/bin/supl20clientd
+    class main
+    user system
+    group system inet
+    disabled
+
+service agnsslog /system/bin/agnsslog
+    class main
+    user system
+    group system inet root
+    disabled
+
+service watchlssd /system/xbin/watchlssd
+    class main
+    user system
+    group system inet net_raw
+    disabled
+
+service mapper /system/bin/sh /system/bin/mappersh
+    class late_start
+    user root
+    group system
+    disabled
+
+service bastetd /system/bin/bastetd
+    class main
+    user root
+    group root
+    disabled
+
+on property:sys.printservice=*
+    printservice ${sys.printservice}
+    
+on restart-sdcardfs
+    mkdir /data/media 0770 media_rw media_rw    
+    chown media_rw media_rw /data/media
+    mount sdcardfs /data/media /mnt/shell/emulated nosuid nodev derive=legacy,reserved_mb=20
+    
+on property:vold.decrypt=trigger_reset_main
+    class_reset main
+    class_reset late_start
+    write /sys/devices/platform/balong_power/state 10
+    setprop vold.crypto_support_innersd 1
+    
+on property:vold.decrypt=trigger_restart_min_framework
+    start teecd
+    class_start main
+    
+on property:vold.decrypt=trigger_restart_framework
+    class_start main
+    class_start late_start
+    trigger restart-sdcardfs
+    setprop rild.rild1_ready_to_start ${rild.rild1_ready_to_start}
+    start gpsdaemon
+    exec_ev /system/bin/start_110x_service.sh
+    write /proc/wifi_enable/wifi_start 1
+    write /proc/oam_enable/oam_start 1
+
+on property:vold.decrypt=trigger_default_encryption
+    start surfaceflinger
+    start defaultcrypto
+
+on property:bastet.service.enable=true
+    start bastetd
+
+
+service ioinfoservice /system/bin/ioinfoservice
+    disabled
+    class main
+
+service jankservice /system/bin/jankservice
+    disabled
+    class main
+
+on property:persist.sys.jankenable=true
+    start ioinfoservice
+    start jankservice
+
+on property:persist.sys.jankenable=false
+    stop jankservice
+    stop ioinfoservice
+	
+	
 on property:rild.rild1_ready_to_start=true
     start ril-daemon1
 
