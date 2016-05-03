@@ -16,7 +16,8 @@
 
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
-USE_CAMERA_STUB := true
+#USE_CAMERA_STUB := true
+USE_CAMERA_STUB := false
 BOARD_USES_GENERIC_AUDIO := false
 
 # 64 Bit
@@ -85,9 +86,22 @@ TARGET_USES_UNCOMPRESSED_KERNEL := true
 BOARD_KERNEL_IMAGE_NAME := Image
 TARGET_PREBUILT_KERNEL := device/huawei/alice/kernel
 
-BOARD_KERNEL_CMDLINE := hisi_dma_print=0 vmalloc=384M maxcpus=8 coherent_pool=512K no_irq_affinity enforcing=0 androidboot.selinux=permissive ate_enable=true
-BOARD_KERNEL_BASE := 0x07478000
+# Kernel
+#BOARD_KERNEL_CMDLINE  := 'ro.boot.hardware=hi6210sft coherent_pool=512K vmalloc=384M mem=2044m@0x200000 psci=enable androidboot.selinux=disabled mmcparts=mmcblk0:p1(vrl),p2(vrl_backup),p7(modemnvm_factory),p18(splash),p22(dfx),p23(modemnvm_backup),p24(modemnvm_img),p25(modemnvm_system),p26(modem),p27(modem_dsp),p28(modem_om),p29(modemnvm_update),p31(3rdmodem),p32(3rdmodemnvm),p33(3rdmodemnvmbkp)'
+BOARD_KERNEL_CMDLINE := 'hisi_dma_print=0 vmalloc=384M maxcpus=8 coherent_pool=512K no_irq_affinity androidboot.selinux=disabled ate_enable=true'
+
 BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_BASE     := 0x07478000
+BOARD_KERNEL_OFFSET   := 0x00008000
+BOARD_RAMDISK_OFFSET  := 0x07b88000
+BOARD_SECOND_OFFSET   := 0x00f00000
+BOARD_TAGS_OFFSET     := 0x02988000
+
+#BOARD_MKBOOTIMG_ARGS += --kernel_offset "$(BOARD_KERNEL_OFFSET)"
+#BOARD_MKBOOTIMG_ARGS += --ramdisk_offset "$(BOARD_RAMDISK_OFFSET)"
+#BOARD_MKBOOTIMG_ARGS += --second_offset "$(BOARD_SECOND_OFFSET)"
+#BOARD_MKBOOTIMG_ARGS += --tags_offset "$(BOARD_TAGS_OFFSET)"
+
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x07b88000 --tags_offset 0x02988000
 
 
@@ -136,24 +150,25 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 BOARD_USES_ALSA_AUDIO := true
 
 # Bluetooth
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/alice/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := device/huawei/alice/bluetooth/vnd_hi6210sft.txt
+BOARD_HAVE_BLUETOOTH             := false
+#BOARD_HAVE_BLUETOOTH_BCM         := true
+#BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/alice/bluetooth
+#BOARD_BLUEDROID_VENDOR_CONF      := device/huawei/alice/bluetooth/vnd_hi6210sft.txt
 
 # Wifi
-BOARD_WLAN_DEVICE                := bcmdhd
-BOARD_WLAN_DEVICE_REV            := bcm4343
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
-WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
-WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcm4343s_hw.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4343s_apsta_hw.bin"
-WIFI_DRIVER_FW_PATH_P2P          := "/system/vendor/firmware/fw_bcm4343s_p2p_hw.bin"
-WIFI_BAND                        := 802_11_ABG
+BOARD_HAVE_WIFI := false
+#BOARD_WLAN_DEVICE                := bcmdhd
+#BOARD_WLAN_DEVICE_REV            := bcm4343
+#WPA_SUPPLICANT_VERSION           := VER_0_8_X
+#BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+#BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
+#BOARD_HOSTAPD_DRIVER             := NL80211
+#BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
+#WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
+#WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcm4343s_hw.bin"
+#WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4343s_apsta_hw.bin"
+#WIFI_DRIVER_FW_PATH_P2P          := "/system/vendor/firmware/fw_bcm4343s_p2p_hw.bin"
+#WIFI_BAND                        := 802_11_ABG
 
 # assert
 TARGET_OTA_ASSERT_DEVICE := hi6210sft,p8litekirin,alice,HI6210SFT,ALICE,P8LITEKIRIN

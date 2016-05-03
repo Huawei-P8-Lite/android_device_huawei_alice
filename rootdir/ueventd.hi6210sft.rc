@@ -66,17 +66,11 @@
 
 /dev/tc_ns_client 0660    system  system
 
-# GPS
-/dev/ttyAMA3 0660    system  system
-
 # Bluetooth
-/dev/ttyAMA4 0660    bluetooth  bluetooth
+#/dev/ttyAMA0 0660    bluetooth  bluetooth
 
 # Wifi
 /dev/rfkill 0660    wifi wifi
 
 # Sensors
 /dev/sensorhub 0660    system  system
-
-# IRDA
-/dev/ttyAMA0 0660    system    system

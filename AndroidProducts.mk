@@ -17,4 +17,5 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/aosp_alice.mk \
-    $(LOCAL_DIR)/omni_alice.mk
+    $(LOCAL_DIR)/omni_alice.mk \
+	$(LOCAL_DIR)/cm.mk
