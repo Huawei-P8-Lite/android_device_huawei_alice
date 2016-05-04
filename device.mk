@@ -77,44 +77,54 @@ PRODUCT_PACKAGES += \
     tinypcminfo
 
 # Wifi
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/rootdir/system/etc/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
-#    $(LOCAL_PATH)/rootdir/system/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-#    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-#    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf \
-#    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
-#PRODUCT_PACKAGES += \
-#    libnetcmdiface \
-#    libwpa_client \
-#    dhcpcd.conf \
-#    hostapd \
-#    wpa_supplicant \
-#    wpa_supplicant_hisi \
-#    wpa_cli_hisi \
-#    hostapd_hisi \
-#    wpa_supplicant.conf
-
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    wifi.interface=wlan0 \
-#    wifi.supplicant_scan_interval=15
+PRODUCT_PACKAGES += \
+    libnetcmdiface \
+    libwpa_client \
+    dhcpcd.conf \
+    wpa_cli_hisi \
+    hostapd_hisi \
+    supl20clientd \
+    watchlssd \
+	agnsslog \
+	agnsscontrol \
+	gnss_engine \
+	dhcpcd \
+	hostapd_hisi \
+	wpa_supplicant_hisi \
+	octty \
+	oam_app \
+	netd
+	
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0 \
+    wifi.supplicant_scan_interval=15
 
 # Device state monitor
 #PRODUCT_COPY_FILES += \
 #    $(LOCAL_PATH)/rootdir/system/etc/device_state_monitor.conf:system/etc/device_state_monitor.conf
 
 # GPS
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/rootdir/system/etc/gps.conf:system/etc/gps.conf \
-#    $(LOCAL_PATH)/rootdir/system/etc/gpsconfig.xml:system/etc/gpsconfig.xml
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/system/etc/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/gpsconfig.xml:system/etc/gpsconfig.xml
+
 # The gps config appropriate for this device
-#$(call inherit-product, device/common/gps/gps_us_supl.mk)
+$(call inherit-product, device/common/gps/gps_us_supl.mk)
 
 #Bluetooth
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/auto_pair_devlist.conf:system/etc/bluetooth/auto_pair_devlist.conf \
-#    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
-#    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/auto_pair_devlist.conf:system/etc/bluetooth/auto_pair_devlist.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/bt_stack_log.conf:system/etc/bluetooth/bt_stack_log.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 # Lights
 PRODUCT_PACKAGES += \
