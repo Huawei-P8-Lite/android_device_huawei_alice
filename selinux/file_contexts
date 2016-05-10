@@ -1,6 +1,6 @@
 /dev/mali0                              u:object_r:gpu_device:s0
 /dev/tc_ns_client                       u:object_r:tee_device:s0
-#/dev/memory_throughput                  u:object_r:video_device:s0
+#/dev/memory_throughput                 u:object_r:video_device:s0
 /dev/mali                               u:object_r:gpu_device:s0
 
 /dev/sensorhub                          u:object_r:sensors_device:s0
@@ -16,9 +16,9 @@
 #V8R2 4752 gps use
 /dev/ttyAMA2                            u:object_r:gps_device:s0
 # mali0-K3V3+, mali-V8R2
-#/dev/media[0-9]                         u:object_r:video_device:s0
-#/dev/imgsysbrg_vdec0                    u:object_r:video_device:s0
-#/dev/k3vpp0                             u:object_r:video_device:s0
+#/dev/media[0-9]                        u:object_r:video_device:s0
+#/dev/imgsysbrg_vdec0                   u:object_r:video_device:s0
+#/dev/k3vpp0                            u:object_r:video_device:s0
 /dev/anc_hs                             u:object_r:audio_device:s0
 
 /dev/socket/rild2                       u:object_r:rild_socket:s0
@@ -64,6 +64,6 @@
 /system/bin/glgps                       u:object_r:gpsd_exec:s0
 
 # video decoder
-#/dev/cnm_vpu                            u:object_r:video_device:s0
+#/dev/cnm_vpu                           u:object_r:video_device:s0
 
 /dev/ttyAMA1                            u:object_r:hci_attach_dev:s0

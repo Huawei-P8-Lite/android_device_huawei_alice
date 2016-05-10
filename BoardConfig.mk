@@ -16,8 +16,7 @@
 
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
-#USE_CAMERA_STUB := true
-USE_CAMERA_STUB := false
+USE_CAMERA_STUB := true
 BOARD_USES_GENERIC_AUDIO := false
 
 # 64 Bit
@@ -87,7 +86,7 @@ BOARD_KERNEL_IMAGE_NAME := Image
 TARGET_PREBUILT_KERNEL := device/huawei/alice/kernel
 
 # Kernel
-BOARD_KERNEL_CMDLINE := 'hisi_dma_print=0 vmalloc=384M maxcpus=8 coherent_pool=512K no_irq_affinity androidboot.selinux=disabled ate_enable=true'
+BOARD_KERNEL_CMDLINE := hisi_dma_print=0 vmalloc=384M maxcpus=8 coherent_pool=512K no_irq_affinity androidboot.selinux=disabled ate_enable=true
 
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_BASE     := 0x07478000
@@ -148,7 +147,7 @@ BOARD_USES_ALSA_AUDIO := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH             := true
-BOARD_HAVE_BLUETOOTH_BCM         := true
+#BOARD_HAVE_BLUETOOTH_BCM         := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/alice/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF      := device/huawei/alice/bluetooth/vnd_hi6210sft.txt
 
