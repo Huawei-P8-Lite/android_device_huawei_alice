@@ -29,11 +29,11 @@ TARGET_SCREEN_WIDTH := 720
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=320 \
     hw.lcd.lcd_density=320
-
+	
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
 # Ramdisk
-PRODUCT_COPY_FILES := \
+PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/fstab.hi6210sft:root/fstab.hi6210sft \
     $(LOCAL_PATH)/rootdir/init.hi6210sft.rc:root/init.hi6210sft.rc \
     $(LOCAL_PATH)/rootdir/init.hi6210sft.usb.rc:root/init.hi6210sft.usb.rc \
@@ -44,12 +44,13 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
 ADDITIONAL_DEFAULT_PROPERTIES += ro.zygote=zygote64_32
 PRODUCT_COPY_FILES += system/core/rootdir/init.zygote64_32.rc:root/init.zygote64_32.rc
 
+# Build gralloc for hikey
+PRODUCT_PACKAGES += gralloc.hi6210sft
+
 # Graphics
 PRODUCT_PACKAGES += \
-    libGLES_android \
-    libion \
-    gralloc.hi6210sft \
-    gatord
+	libGLES_mali \
+	libion.huawei
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
@@ -80,9 +81,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/etc/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
     $(LOCAL_PATH)/rootdir/system/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf
+
+PRODUCT_PACKAGES +=	TIInit_11.8.32.bts \
+			wl18xx-fw-4.bin \
+			wl18xx-conf.bin
+
+# Include BT modules
+$(call inherit-product, device/huawei/alice/wpan/ti-wpan-products.mk)
 
 PRODUCT_PACKAGES += \
     libnetcmdiface \
@@ -96,11 +104,7 @@ PRODUCT_PACKAGES += \
 	agnsscontrol \
 	gnss_engine \
 	dhcpcd \
-	hostapd_hisi \
-	wpa_supplicant_hisi \
-	octty \
-	oam_app \
-	netd
+	wpa_supplicant_hisi
 	
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \

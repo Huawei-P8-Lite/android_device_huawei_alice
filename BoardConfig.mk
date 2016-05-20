@@ -17,11 +17,13 @@
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
 USE_CAMERA_STUB := true
-BOARD_USES_GENERIC_AUDIO := false
+BOARD_USES_GENERIC_AUDIO := true
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_KERNEL := false
+TARGET_NO_RECOVERY := true
 
 # 64 Bit
 ANDROID_64=true
-ANDROID_ENABLE_RENDERSCRIPT := true
 TARGET_SUPPORTS_32_BIT_APPS := true
 TARGET_SUPPORTS_64_BIT_APPS := true
 TARGET_USES_64_BIT_BINDER := true
@@ -32,17 +34,17 @@ TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_VARIANT := generic
 TARGET_CPU_ABI := arm64-v8a
-TARGET_BOARD_GPU := mali-450mp
 
 #2nd Arch
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
-TARGET_2ND_CPU_VARIANT := cortex-a7
+TARGET_2ND_CPU_VARIANT := cortex-a15
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_CPU_SMP := true
 
 # Compiler Optimizations
-#ARCH_ARM_HIGH_OPTIMIZATION := true
+ARCH_ARM_HIGH_OPTIMIZATION := true
 
 # Enable various prefetch optimizations
 #COMMON_GLOBAL_CFLAGS += -D__ARM_USE_PLD -D__ARM_CACHE_LINE_SIZE=64
@@ -58,22 +60,19 @@ TARGET_BOARD_PLATFORM := hi6210sft
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
-# Hardware
-TARGET_HARDWARE_3D := true
-
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
 # Libc extensions
 BOARD_PROVIDES_ADDITIONAL_BIONIC_STATIC_LIBS += libc_huawei_symbols
 
-# Graphics
+# EGL + Video
+ANDROID_ENABLE_RENDERSCRIPT := true
 BOARD_EGL_CFG := device/huawei/alice/rootdir/system/lib/egl/egl.cfg
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+TARGET_BOARD_GPU := mali-450mp
+TARGET_HARDWARE_3D := true
 USE_OPENGL_RENDERER := true
-
-# ?????
-
-TARGET_CPU_SMP := true
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/huawei/alice
@@ -145,25 +144,15 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 # Audio
 BOARD_USES_ALSA_AUDIO := true
 
-# Bluetooth
-BOARD_HAVE_BLUETOOTH             := true
-#BOARD_HAVE_BLUETOOTH_BCM         := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/alice/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF      := device/huawei/alice/bluetooth/vnd_hi6210sft.txt
+# BT configs
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := "device/huawei/alice/bluetooth"
+BOARD_HAVE_BLUETOOTH := true
 
-# Wifi
-BOARD_WLAN_DEVICE                := bcmdhd
-BOARD_WLAN_DEVICE_REV            := bcm4343
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
-WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
-WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcm4343s_hw.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4343s_apsta_hw.bin"
-WIFI_DRIVER_FW_PATH_P2P          := "/system/vendor/firmware/fw_bcm4343s_p2p_hw.bin"
-WIFI_BAND                        := 802_11_ABG
+# generic wifi
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+CONFIG_DRIVER_NL80211 := y
+CONFIG_DRIVER_WEXT :=y
 
 # assert
 TARGET_OTA_ASSERT_DEVICE := hi6210sft,p8litekirin,alice,HI6210SFT,ALICE,P8LITEKIRIN
