@@ -29,11 +29,16 @@ TARGET_SCREEN_WIDTH := 720
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=320 \
     hw.lcd.lcd_density=320
-	
+
+# Set custom settings	
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
+
+# Add openssh support for remote debugging and job submission
+PRODUCT_PACKAGES += ssh sftp scp sshd ssh-keygen sshd_config start-ssh
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/kernel:kernel \
     $(LOCAL_PATH)/rootdir/fstab.hi6210sft:root/fstab.hi6210sft \
     $(LOCAL_PATH)/rootdir/init.hi6210sft.rc:root/init.hi6210sft.rc \
     $(LOCAL_PATH)/rootdir/init.hi6210sft.usb.rc:root/init.hi6210sft.usb.rc \
@@ -43,9 +48,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
 ADDITIONAL_DEFAULT_PROPERTIES += ro.zygote=zygote64_32
 PRODUCT_COPY_FILES += system/core/rootdir/init.zygote64_32.rc:root/init.zygote64_32.rc
-
-# Build gralloc for hikey
-PRODUCT_PACKAGES += gralloc.hi6210sft
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -77,42 +79,20 @@ PRODUCT_PACKAGES += \
     tinymix \
     tinypcminfo
 
-# Wifi
+# Add wifi-related packages
+PRODUCT_PACKAGES += libwpa_client wpa_supplicant hostapd
+PRODUCT_PROPERTY_OVERRIDES += wifi.interface=wlan0 \
+                              wifi.supplicant_scan_interval=15
+
+# BCM4343 Wlan Modules
+$(call inherit-product, hardware/broadcom/wlan/bcmdhd/firmware/bcm4343/device-bcm.mk)
+
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/system/etc/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf
-
-PRODUCT_PACKAGES +=	TIInit_11.8.32.bts \
-			wl18xx-fw-4.bin \
-			wl18xx-conf.bin
-
-# Include BT modules
-$(call inherit-product, device/huawei/alice/wpan/ti-wpan-products.mk)
-
-PRODUCT_PACKAGES += \
-    libnetcmdiface \
-    libwpa_client \
-    dhcpcd.conf \
-    wpa_cli_hisi \
-    hostapd_hisi \
-    supl20clientd \
-    watchlssd \
-	agnsslog \
-	agnsscontrol \
-	gnss_engine \
-	dhcpcd \
-	wpa_supplicant_hisi
-	
-PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=15
-
-# Device state monitor
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/rootdir/system/etc/device_state_monitor.conf:system/etc/device_state_monitor.conf
+    $(LOCAL_PATH)/rootdir/system/etc/dhcpcd/android_dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
 
 # GPS
 PRODUCT_COPY_FILES += \
@@ -121,14 +101,6 @@ PRODUCT_COPY_FILES += \
 
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
-
-#Bluetooth
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/auto_pair_devlist.conf:system/etc/bluetooth/auto_pair_devlist.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/bt_stack_log.conf:system/etc/bluetooth/bt_stack_log.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 # Lights
 PRODUCT_PACKAGES += \
