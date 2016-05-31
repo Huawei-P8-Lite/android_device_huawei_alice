@@ -16,8 +16,8 @@
 
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
-
-#define BTM_DEF_LOCAL_NAME   "Android Bluedroid"
-#define PRELOAD_START_TIMEOUT_MS 30000
-
+#define BTA_DM_COD {0x1A, 0x01, 0x1C}
+#define BTIF_HF_SERVICES (BTA_HSP_SERVICE_MASK)
+#define BLE_VND_INCLUDED TRUE
+#define BTM_BLE_ADV_TX_POWER {-21, -15, -7, 1, 9}
 #endif

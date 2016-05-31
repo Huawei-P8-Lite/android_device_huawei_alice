@@ -14,13 +14,21 @@
 # limitations under the License.
 #
 
-# This variable is set first, so it can be overridden
-# by BoardConfigVendor.mk
+PLATFORM_PATH := device/oneplus/onyx
+
+# Bootloader
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+TARGET_BOOTLOADER_BOARD_NAME := hi6210sft
+
+# Platform
+TARGET_BOARD_PLATFORM := hi6210sft
+TARGET_BOARD_PLATFORM_GPU := mali-450m
+BOARD_VENDOR := huawei
+BOARD_VENDOR_PLATFORM := hi6210sft
+
 USE_CAMERA_STUB := true
 BOARD_USES_GENERIC_AUDIO := true
-TARGET_NO_BOOTLOADER := true
-TARGET_NO_KERNEL := false
-TARGET_NO_RECOVERY := true
 
 # 64 Bit
 ANDROID_64=true
@@ -28,6 +36,8 @@ TARGET_SUPPORTS_32_BIT_APPS := true
 TARGET_SUPPORTS_64_BIT_APPS := true
 TARGET_USES_64_BIT_BINDER := true
 TARGET_USES_HISI_DTIMAGE := true
+
+# Architecture
 
 # 1st Arch
 TARGET_ARCH := arm64
@@ -43,23 +53,6 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 
-# Compiler Optimizations
-ARCH_ARM_HIGH_OPTIMIZATION := true
-
-# Enable various prefetch optimizations
-#COMMON_GLOBAL_CFLAGS += -D__ARM_USE_PLD -D__ARM_CACHE_LINE_SIZE=64
-
-# Board
-BOARD_VENDOR := huawei
-BOARD_VENDOR_PLATFORM := hi6210sft
-TARGET_BOOTLOADER_BOARD_NAME := hi6210sft
-TARGET_BOARD_PLATFORM := hi6210sft
-#TARGET_SOC := kirin920
-
-# Boot animation
-TARGET_BOOTANIMATION_PRELOAD := true
-TARGET_BOOTANIMATION_TEXTURE_CACHE := true
-
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
@@ -69,8 +62,6 @@ BOARD_PROVIDES_ADDITIONAL_BIONIC_STATIC_LIBS += libc_huawei_symbols
 # EGL + Video
 ANDROID_ENABLE_RENDERSCRIPT := true
 BOARD_EGL_CFG := device/huawei/alice/rootdir/system/lib/egl/egl.cfg
-BOARD_EGL_WORKAROUND_BUG_10194508 := true
-TARGET_BOARD_GPU := mali-450mp
 TARGET_HARDWARE_3D := true
 USE_OPENGL_RENDERER := true
 
@@ -91,12 +82,10 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_BASE     := 0x07478000
 BOARD_KERNEL_OFFSET   := 0x00008000
 BOARD_RAMDISK_OFFSET  := 0x07b88000
-#BOARD_SECOND_OFFSET   := 0x00f00000
 BOARD_TAGS_OFFSET     := 0x02988000
 
 BOARD_MKBOOTIMG_ARGS += --kernel_offset "$(BOARD_KERNEL_OFFSET)"
 BOARD_MKBOOTIMG_ARGS += --ramdisk_offset "$(BOARD_RAMDISK_OFFSET)"
-#BOARD_MKBOOTIMG_ARGS += --second_offset "$(BOARD_SECOND_OFFSET)"
 BOARD_MKBOOTIMG_ARGS += --tags_offset "$(BOARD_TAGS_OFFSET)"
 
 
@@ -105,12 +94,8 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 25165824
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2684354560
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 11605639168
-#BOARD_CACHEIMAGE_PARTITION_SIZE := 104857600
-#BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_USERIMAGES_USE_EXT4 := true
-
-
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 DEVICE_RESOLUTION := 720x1280
@@ -144,23 +129,23 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 # Audio
 BOARD_USES_ALSA_AUDIO := true
 
-# BT configs
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := "device/huawei/alice/bluetooth"
-BOARD_HAVE_BLUETOOTH := true
+# Wifi related defines
+BOARD_WLAN_DEVICE                := bcmdhd
+BOARD_WLAN_DEVICE_REV            := bcm4343
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
+WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcm4343s_hw.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4343s_apsta_hw.bin"
+WIFI_DRIVER_FW_PATH_P2P          := "/system/vendor/firmware/fw_bcm4343s_p2p_hw.bin"
+WIFI_BAND                        := 802_11_ABG
 
-# Generic Broadcom Wifi and Hostapd
-BOARD_WLAN_DEVICE                           := bcmdhd
-BOARD_WLAN_DEVICE_REV                       := bcm4343
-WPA_SUPPLICANT_VERSION                      := VER_0_8_X
-BOARD_WPA_SUPPLICANT_DRIVER                 := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB            := lib_driver_cmd_bcmdhd
-BOARD_HOSTAPD_DRIVER                        := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB                   := lib_driver_cmd_bcmdhd
-WIFI_DRIVER_FW_PATH_PARAM                   := "/sys/module/bcmdhd/parameters/firmware_path"
-WIFI_DRIVER_FW_PATH_STA                     := "/system/vendor/firmware/fw_bcm4343s_hw.bin"
-WIFI_DRIVER_FW_PATH_AP                      := "/system/vendor/firmware/fw_bcm4343s_apsta_hw.bin"
-WIFI_DRIVER_FW_PATH_P2P                     := "/system/vendor/firmware/fw_bcm4343s_p2p_hw.bin"
-WIFI_BAND                                   := 802_11_ABG
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/alice/bluetooth
+BOARD_HAVE_BLUETOOTH_BCM                    := true
 
 # assert
 TARGET_OTA_ASSERT_DEVICE := hi6210sft,p8litekirin,alice,HI6210SFT,ALICE,P8LITEKIRIN

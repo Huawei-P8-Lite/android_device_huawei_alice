@@ -26,22 +26,25 @@ PRODUCT_AAPT_PREBUILT_DPI := xhdpi hdpi
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=320 \
-    hw.lcd.lcd_density=320
-
 # Set custom settings	
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
-
-# Add openssh support for remote debugging and job submission
-PRODUCT_PACKAGES += ssh sftp scp sshd ssh-keygen sshd_config start-ssh
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/kernel:kernel \
     $(LOCAL_PATH)/rootdir/fstab.hi6210sft:root/fstab.hi6210sft \
+    $(LOCAL_PATH)/rootdir/init.5801.rc:root/init.5801.rc \
+    $(LOCAL_PATH)/rootdir/init.audio.rc:root/init.audio.rc \
+    $(LOCAL_PATH)/rootdir/init.connectivity.hi110x.rc:root/init.connectivity.hi110x.rc \
+    $(LOCAL_PATH)/rootdir/init.environ.rc:root/init.environ.rc \
+    $(LOCAL_PATH)/rootdir/init.extmodem.rc:root/init.extmodem.rc \
     $(LOCAL_PATH)/rootdir/init.hi6210sft.rc:root/init.hi6210sft.rc \
     $(LOCAL_PATH)/rootdir/init.hi6210sft.usb.rc:root/init.hi6210sft.usb.rc \
+    $(LOCAL_PATH)/rootdir/init.hisi.rc:root/init.hisi.rc \
+    $(LOCAL_PATH)/rootdir/init.manufacture.rc:root/init.manufacture.rc \
+    $(LOCAL_PATH)/rootdir/init.platform.rc:root/init.platform.rc \
+    $(LOCAL_PATH)/rootdir/init.tee.rc:root/init.tee.rc \
+    $(LOCAL_PATH)/rootdir/init.trace.rc:root/init.trace.rc \
     $(LOCAL_PATH)/rootdir/ueventd.hi6210sft.rc:root/ueventd.hi6210sft.rc 
 
 # Set zygote config
@@ -51,8 +54,7 @@ PRODUCT_COPY_FILES += system/core/rootdir/init.zygote64_32.rc:root/init.zygote64
 
 # Graphics
 PRODUCT_PACKAGES += \
-	libGLES_mali \
-	libion.huawei
+	libGLES_mali
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
@@ -80,19 +82,29 @@ PRODUCT_PACKAGES += \
     tinypcminfo
 
 # Add wifi-related packages
-PRODUCT_PACKAGES += libwpa_client wpa_supplicant hostapd
-PRODUCT_PROPERTY_OVERRIDES += wifi.interface=wlan0 \
-                              wifi.supplicant_scan_interval=15
-
-# BCM4343 Wlan Modules
-$(call inherit-product, hardware/broadcom/wlan/bcmdhd/firmware/bcm4343/device-bcm.mk)
+PRODUCT_PACKAGES += \
+	octty \
+	oam_app \
+	wpa_cli_hisi \
+	wpa_supplicant_hisi \
+	dhcpcd \
+ 	wpa_supplicant_hisi.conf \
+    wpa_supplicant.conf \
+	hostapd_hisi.conf \
+	bt_vendor.conf
 
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+    $(LOCAL_PATH)/firmware/brcm/BCM4334B0_002.001.013.1554.1613_RC.hcd:system/vendor/firmware/BCM4334B0_002.001.013.1554.1613_RC.hcd \
+    $(LOCAL_PATH)/firmware/brcm/fw_bcm4343s_p2p_hw.bin:system/vendor/firmware/fw_bcm4343s_p2p_hw.bin \
+    $(LOCAL_PATH)/firmware/brcm/fw_bcm4343s_hw.bin:system/vendor/firmware/fw_bcm4343s_hw.bin \
+    $(LOCAL_PATH)/firmware/brcm/fw_bcm4343s_apsta_hw.bin:system/vendor/firmware/fw_bcm4343s_apsta_hw.bin \
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/dhcpcd/android_dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+
+#    $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf \
 
 # GPS
 PRODUCT_COPY_FILES += \
@@ -161,6 +173,8 @@ PRODUCT_PACKAGES += \
 
 # Non-device-specific props
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sf.lcd_density=320 \
+    hw.lcd.lcd_density=320 \
     ro.com.google.locationfeatures=1 \
     ro.setupwizard.mode=OPTIONAL \
     ro.setupwizard.enable_bypass=1 \
