@@ -4,7 +4,7 @@ on post-fs-data
     chown root root /data/sec_storage
     chmod 600 /data/sec_storage
 
-service teecd /sbin/teecd
+service teecd /bin/teecd
     class main
     user root
     group root

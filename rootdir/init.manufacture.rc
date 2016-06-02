@@ -53,7 +53,7 @@ service atcmdserver  /system/bin/atcmdserver
     class main
     disabled
 
-service oeminfo_nvm /sbin/oeminfo_nvm_server
+service oeminfo_nvm /bin/oeminfo_nvm_server
     class core
     ioprio rt 4
 
@@ -65,7 +65,7 @@ service goldeneye /system/bin/goldeneye
     class main
     user root
 
-service check_root /sbin/check_root
+service check_root /bin/check_root
     class main
     oneshot
     seclabel u:r:check_root:s0

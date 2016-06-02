@@ -80,9 +80,10 @@ on boot
     write  /sys/devices/platform/antennafpga.0/ice40bin_download_dir "start"
     chown system system /sys/devices/platform/antennafpga.0/ice40bin_scan_fpga_table
 
-service modemlogcat_VIA /system/bin/modemlogcat_via -t /dev/ttySPI1 -c /system/etc/modemConfig/viacbp82d_log.bcfg -p /data/hwzd_logs/cp_log/ -r 30 -n 9
-    class late_start
-    user root
-    group system
-    disabled
-    oneshot
+## modemlogcat_via not found in source
+#service modemlogcat_VIA /system/bin/modemlogcat_via -t /dev/ttySPI1 -c /system/etc/modemConfig/viacbp82d_log.bcfg -p /data/hwzd_logs/cp_log/ -r 30 -n 9
+#    class late_start
+#    user root
+#    group system
+#    disabled
+#    oneshot
