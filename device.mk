@@ -52,6 +52,14 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
 ADDITIONAL_DEFAULT_PROPERTIES += ro.zygote=zygote64_32
 PRODUCT_COPY_FILES += system/core/rootdir/init.zygote64_32.rc:root/init.zygote64_32.rc
 
+# RIL
+#PRODUCT_PROPERTY_OVERRIDES += \
+#	audioril.lib=libhuawei-audio-ril.so \
+#	ro.telephony.ril_class=HwHisiRIL \
+#	ro.telephony.default_network=9,9 \
+#	telephony.lteOnCdmaDevice=0,0 \
+#	telephony.lteOnGsmDevice=0,0
+	
 # Graphics
 PRODUCT_PACKAGES += \
 	libGLES_mali

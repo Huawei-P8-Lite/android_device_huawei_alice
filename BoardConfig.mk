@@ -109,6 +109,8 @@ TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd_backlight0/brightness"
 TW_CUSTOM_BATTERY_PATH := "/sys/devices/platform/bq_bci_battery.1/power_supply/Battery"
 TW_MAX_BRIGHTNESS := 255
 
+# Board RIL
+#BOARD_RIL_CLASS                             := ../../../device/huawei/alice/ril
 
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(HOST_OS),linux)
