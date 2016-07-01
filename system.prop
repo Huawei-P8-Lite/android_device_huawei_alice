@@ -2,6 +2,9 @@
 ro.config.max_starting_bg=8
 ro.sys.fw.use_trim_settings=true
 
+# Audio
+ro.config.vc_call_vol_steps=7
+
 # Bluetooth
 ro.bt.bdaddr_path=/data/misc/bluedroid/macbt
 
