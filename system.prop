@@ -1,6 +1,9 @@
 # ADB
 persist.sys.adb.shell=/system/xbin/bash
 
+# Audio
+ro.config.vc_call_vol_steps=7
+
 # Bluetooth
 ro.bt.bdaddr_path=/data/misc/bluedroid/macbt
 
