@@ -23,26 +23,21 @@
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
 
-# Inherit from those products. Most specific first.
+# Android Open Source Project Common Stuff
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/locales_full.mk)
 
-# Inherit from kiwi device
+# Device
 $(call inherit-product, device/huawei/alice/device.mk)
 
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-# Boot animation
-TARGET_SCREEN_HEIGHT := 1280
-TARGET_SCREEN_WIDTH := 720
-
-PRODUCT_GMS_CLIENTID_BASE := android-huawei
-
-# Device identifier. This must come after all inclusions
 PRODUCT_NAME := full_alice
 PRODUCT_DEVICE := alice
 PRODUCT_BRAND := Huawei
 PRODUCT_MANUFACTURER := HUAWEI
 PRODUCT_MODEL := HUAWEI-P8Lite
+
+PRODUCT_GMS_CLIENTID_BASE := android-huawei
