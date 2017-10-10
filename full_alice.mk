@@ -31,9 +31,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/locales_full.mk)
 # Device
 $(call inherit-product, device/huawei/alice/device.mk)
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
-
 PRODUCT_NAME := full_alice
 PRODUCT_DEVICE := alice
 PRODUCT_BRAND := Huawei
