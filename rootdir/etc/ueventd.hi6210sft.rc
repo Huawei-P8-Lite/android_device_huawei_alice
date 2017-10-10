@@ -9,5 +9,9 @@
 /dev/miscnff              0770   root        system
 /dev/hifi_misc            0770   root        audio
 /dev/akm09911_dev         0660   system      system
+/dev/block/mmcblk0p4      0660   system      system
 
 /dev/pn544                0660   nfc         nfc
+
+/dev/ear_pa               0660   media       media
+/dev/tfa9895              0660   media       media
