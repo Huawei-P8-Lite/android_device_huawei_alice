@@ -52,25 +52,10 @@ PRODUCT_PACKAGES += \
     	tinypcminfo \
     	tinyplay \
 
-PRODUCT_COPY_FILES += \
-    	$(LOCAL_PATH)/prebuilts/audio_effects.conf:system/vendor/etc/audio_effects.conf \
-    	$(LOCAL_PATH)/prebuilts/audio_policy.conf:system/etc/audio_policy.conf
-
 # Blobs
 $(call inherit-product-if-exists, vendor/huawei/alice/alice-vendor.mk)
 
-# Camera
-PRODUCT_COPY_FILES += \
-    	$(LOCAL_PATH)/prebuilts/camera_orientation.cfg:system/etc/camera_orientation.cfg \
-    	$(LOCAL_PATH)/prebuilts/camera_resolutions.cfg:system/etc/camera_resolutions.cfg \
-    	$(LOCAL_PATH)/prebuilts/camera_videosnapshot.cfg:system/etc/camera_videosnapshot.cfg
-
 # Codecs
-PRODUCT_COPY_FILES += \
-    	$(LOCAL_PATH)/prebuilts/media_codecs.xml:system/etc/media_codecs.xml \
-    	$(LOCAL_PATH)/prebuilts/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
-    	$(LOCAL_PATH)/prebuilts/media_profiles.xml:system/etc/media_profiles.xml
-
 PRODUCT_COPY_FILES += \
     	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
@@ -79,11 +64,6 @@ PRODUCT_COPY_FILES += \
 # Dalvik
 PRODUCT_TAGS += dalvik.gc.type-precise
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-
-# Device Monitor
-PRODUCT_COPY_FILES += \
-    	$(LOCAL_PATH)/prebuilts/device_monitor_for_nff.conf:system/etc/device_monitor_for_nff.conf \
-    	$(LOCAL_PATH)/prebuilts/device_state_monitor.conf:system/etc/device_state_monitor.conf \
 
 # Display
 TARGET_SCREEN_HEIGHT := 1280
@@ -97,31 +77,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     	libtinyxml
 
-PRODUCT_COPY_FILES += \
-    	$(LOCAL_PATH)/prebuilts/clatd.conf:system/etc/clatd.conf \
-    	$(LOCAL_PATH)/prebuilts/gps.conf:system/etc/gps.conf \
-    	$(LOCAL_PATH)/prebuilts/gpsconfig.xml:system/etc/gpsconfig.xml \
-    	$(LOCAL_PATH)/prebuilts/gpsconfig_beta.xml:system/etc/gpsconfig_beta.xml \
-    	$(LOCAL_PATH)/prebuilts/hisi_cfg.ini:system/etc/hisi_cfg.ini \
-    	$(LOCAL_PATH)/prebuilts/hisi_cfg_alice.ini:system/etc/hisi_cfg_alice.ini \
-
-# Keypads
-PRODUCT_PACKAGES += \
-    	usbaudio.kl
-
 # NFC
 PRODUCT_PACKAGES += \
     	com.android.nfc_extras \
     	Tag \
     	NfcNci \
     	nfc_nci.pn54x.default
-
-PRODUCT_COPY_FILES += \
-    	$(LOCAL_PATH)/prebuilts/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-    	$(LOCAL_PATH)/prebuilts/libnfc-brcm-alice.conf:system/etc/libnfc-brcm-alice.conf \
-    	$(LOCAL_PATH)/prebuilts/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
-    	$(LOCAL_PATH)/prebuilts/libnfc-nxp-alice.conf:system/etc/libnfc-nxp-alice.conf \
-    	$(LOCAL_PATH)/prebuilts/nfcee_access.xml:system/etc/nfcee_access.xml
 
 PRODUCT_COPY_FILES += \
     	frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
@@ -173,11 +134,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     	persist.sys.usb.config=mtp \
     	ro.magic.api.version=0.1 \
 
-# Thermal Engine
-PRODUCT_COPY_FILES += \
-    	$(LOCAL_PATH)/prebuilts/thermald.xml:system/etc/thermald.xml \
-    	$(LOCAL_PATH)/prebuilts/thermald_performance.xml:system/etc/thermald_performance.xml
-	
 # USB
 PRODUCT_PACKAGES += \
     	com.android.future.usb.accessory
@@ -189,10 +145,3 @@ PRODUCT_PACKAGES += \
     	libwpa_client \
     	wpa_supplicant \
     	wpa_supplicant.conf
-
-PRODUCT_COPY_FILES += \
-    	$(LOCAL_PATH)/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
-    	$(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    	$(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    	$(LOCAL_PATH)/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf \
-    	$(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
