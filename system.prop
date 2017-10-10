@@ -58,6 +58,7 @@ ro.hwui.text_small_cache_width=1024
 ro.hwui.r_buffer_cache_size=8
 debug.hwui.render_dirty_regions=false
 debug.sf.no_hw_vsync=1
+debug.sf.latch_unsignaled=1
 
 # RIL
 ro.telephony.ril_class=HuaweiRIL
