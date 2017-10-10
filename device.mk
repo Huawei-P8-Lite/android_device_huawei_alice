@@ -126,6 +126,7 @@ PRODUCT_COPY_FILES += \
     	frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml \
     	frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml \
     	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
