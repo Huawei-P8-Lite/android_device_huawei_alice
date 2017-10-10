@@ -81,7 +81,6 @@ BOARD_RECOVERY_NEEDS_FBIOPAN_DISPLAY := true
 
 # CMHW
 BOARD_HARDWARE_CLASS := \
-    	$(LOCAL_PATH)/cmhw \
     	hardware/cyanogen/cmhw
 
 # CPU
