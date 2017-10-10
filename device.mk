@@ -77,6 +77,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     	libtinyxml
 
+# Graphics
+PRODUCT_PACKAGES += \
+	hwcomposer.hi6210sft
+
 # NFC
 PRODUCT_PACKAGES += \
     	com.android.nfc_extras \
