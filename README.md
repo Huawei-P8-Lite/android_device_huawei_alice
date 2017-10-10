@@ -1,4 +1,4 @@
-@Copyright 2017 - The LineageOS Project
+@Copyright 2017 - The Android Open Source Project
 
 Huawei P8Lite detailed specifications:
 ======================================
