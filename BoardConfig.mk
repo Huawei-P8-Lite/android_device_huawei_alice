@@ -27,6 +27,8 @@ LOCAL_PATH := device/huawei/alice
 
 # 64 Bit
 ANDROID_64=true
+TARGET_SUPPORTS_32_BIT_APPS := true
+TARGET_SUPPORTS_64_BIT_APPS := true
 TARGET_USES_64_BIT_BINDER := true
 
 # Architecture
