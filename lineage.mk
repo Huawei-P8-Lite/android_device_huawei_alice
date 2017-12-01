@@ -14,5 +14,14 @@
 
 $(call inherit-product, device/huawei/alice/full_alice.mk)
 
+# Inherit some common CM stuff.
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 720
+
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model
+PRODUCT_GMS_CLIENTID_BASE := android-huawei
+
 PRODUCT_NAME := lineage_alice
-PRODUCT_DEVICE := alice
