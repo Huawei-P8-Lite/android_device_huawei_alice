@@ -165,5 +165,9 @@ WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcmdhd_apsta.bin
 WIFI_DRIVER_FW_PATH_P2P          := "/system/vendor/firmware/fw_bcm4343s_p2p_hw.bin"
 WIFI_BAND                        := 802_11_ABG
 
+# Sepolicy
+BOARD_SEPOLICY_DIRS += \
+	device/huawei/alice/sepolicy
+
 # inherit from the proprietary version
 -include vendor/huawei/alice/BoardConfigVendor.mk
