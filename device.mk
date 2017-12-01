@@ -107,10 +107,6 @@ PRODUCT_PACKAGES += \
     tinymix \
     tinypcminfo
 
-# Gello
-PRODUCT_PACKAGES += \
-    Gello
-
 # KEYPAD
 PRODUCT_PACKAGES += \
     usbaudio.kl
@@ -128,19 +124,9 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.magic.api.version=0.1 \
     persist.sys.usb.config=mtp
 
-# adb as root
-ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
-ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
-ADDITIONAL_DEFAULT_PROPERTIES += security.perf_harden=0
-ADDITIONAL_DEFAULT_PROPERTIES += ro.allow.mock.location=1
-
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
-
-# Ambient
-PRODUCT_PACKAGES += \
-    ambientsdk
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -164,8 +150,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-    frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
-    packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt
+    frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml
 
 # Wifi
 PRODUCT_PACKAGES += \
