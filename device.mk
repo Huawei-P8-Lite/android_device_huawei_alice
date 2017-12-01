@@ -115,6 +115,10 @@ PRODUCT_PACKAGES += \
     cyttsp5_mt.kl \
     usbaudio.kl
 
+# Charger
+PRODUCT_PACKAGES += \
+    charger_res_images
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.hi6210sft \
