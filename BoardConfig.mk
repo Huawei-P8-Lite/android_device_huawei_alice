@@ -141,6 +141,9 @@ TARGET_RIL_VARIANT := proprietary
 # Enable WEBGL
 ENABLE_WEBGL := true
 
+# DT2W Node
+TARGET_TAP_TO_WAKE_NODE := "/sys/touchscreen/easy_wakeup_gesture"
+
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_hi6210sft
