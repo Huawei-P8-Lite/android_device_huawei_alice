@@ -112,6 +112,7 @@ PRODUCT_PACKAGES += \
 
 # KEYPAD
 PRODUCT_PACKAGES += \
+    cyttsp5_mt.kl \
     usbaudio.kl
 
 # Ramdisk
