@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-$(call inherit-product, vendor/huawei/alice/alice-vendor.mk)
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
@@ -286,4 +284,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service
 
+# Common Android Go configurations
+$(call inherit-product, build/target/product/go_defaults.mk)
+
+# Inherit dalvik config
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+
+# Vendor product configurations
+$(call inherit-product, vendor/huawei/alice/alice-vendor.mk)
