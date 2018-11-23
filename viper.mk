@@ -21,8 +21,13 @@ $(call inherit-product, vendor/viper/config/common_full_phone.mk)
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
+# Its Nightly
+VIPER_BUILD_TYPE=NIGHTLY
+
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model
 PRODUCT_GMS_CLIENTID_BASE := android-huawei
+
+PRODUCT_BUILD_PROP_OVERRIDES += DEVICE_MAINTAINERS="Thespartann"
 
 PRODUCT_NAME := viper_alice
 
