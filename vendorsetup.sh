@@ -1,1 +1,1 @@
-add_lunch_combo lineage_alice-userdebug
+add_lunch_combo viper_alice-userdebug
