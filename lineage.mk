@@ -16,15 +16,14 @@ $(call inherit-product, $(LOCAL_PATH)/pre-base.mk)
 $(call inherit-product, $(LOCAL_PATH)/full_alice.mk)
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/rr/config/common_full_phone.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-RR_BUILDTYPE = OpenKirin
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
-PRODUCT_NAME := rr_alice
+PRODUCT_NAME := lineage_alice
 
 PRODUCT_GMS_CLIENTID_BASE := android-huawei
 
