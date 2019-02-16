@@ -15,9 +15,8 @@
 $(call inherit-product, $(LOCAL_PATH)/pre-base.mk)
 $(call inherit-product, $(LOCAL_PATH)/full_alice.mk)
 
-# Inherit some common CM stuff.
+# Inherit some common LineageOS stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
-
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1280

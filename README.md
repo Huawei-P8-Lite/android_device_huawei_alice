@@ -25,7 +25,7 @@ Radio	      |FM radio
 USB	      |microUSB v2.0
 Sensors	      |Accelerometer, proximity, compass
 Battery	      |Non-removable Li-Ion 2200 mAh battery
-Colors 	      |Black, White, Gold
+Colors        |Black, White, Gold
 
 
 ![Huawei P8Lite](http://cdn2.gsmarena.com/vv/pics/huawei/huawei-p8-lite.jpg "Huawei P8Lite")
