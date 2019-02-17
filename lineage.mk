@@ -25,8 +25,8 @@
 
 $(call inherit-product, device/huawei/alice/full_alice.mk)
 
-PRODUCT_NAME := slim_alice
-PRODUCT_DEVICE := alice
+# Inherit some common LineageOS stuff.
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-# SlimRoms MM 6.0
-$(call inherit-product, vendor/slim/config/common_full_phone.mk)
+PRODUCT_NAME := lineage_alice
+PRODUCT_DEVICE := alice
