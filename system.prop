@@ -44,7 +44,10 @@ qemu.hw.mainkeys=0
 ro.am.reschedule_service=true
 ro.config.enable_rcc=true
 
-ro.hwui.texture_cache_size=72
+ro.hwui.r_buffer_cache_size=8
+debug.hwui.render_dirty_regions=false
+debug.sf.no_hw_vsync=1
+
 ro.hwui.texture_cache_flushrate=0.4
 ro.hwui.layer_cache_size=48
 ro.hwui.path_cache_size=32
@@ -61,6 +64,7 @@ debug.sf.no_hw_vsync=1
 debug.sf.latch_unsignaled=1
 
 # RIL
+ro.huaweiril=true
 ro.telephony.ril_class=HuaweiRIL
 audioril.lib=libhuawei-audio-ril.so
 persist.radio.apm_sim_not_pwdn=1
