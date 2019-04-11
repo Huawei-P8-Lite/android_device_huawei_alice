@@ -1,1 +1,2 @@
+allow audioserver audioserver:netlink_kobject_uevent_socket read;
 allow audioserver rild:unix_stream_socket connectto;
