@@ -1,0 +1,2 @@
+allow mediaserver system_server:unix_stream_socket read;
+allow mediaserver system_data_file:file { open read };
