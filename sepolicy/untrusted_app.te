@@ -1,0 +1,7 @@
+allow untrusted_app adbsecure_prop:file read;
+allow untrusted_app adbtcp_prop:file read;
+allow untrusted_app logpersistd_logging_prop:file read;
+allow untrusted_app mmc_prop:file read;
+allow untrusted_app recovery_prop:file read;
+allow untrusted_app safemode_prop:file read;
+allow untrusted_app userinit_prop:file read;
