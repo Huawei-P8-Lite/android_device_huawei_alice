@@ -27,4 +27,7 @@ PRODUCT_NAME := lineage_alice
 PRODUCT_GMS_CLIENTID_BASE := android-huawei
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRIVATE_BUILD_DESC="ALE-L21-user 6.0 MRA58K C02B903 release-keys" \
     TARGET_DEVICE=hi6210sft
+
+BUILD_FINGERPRINT := Huawei/hi6210sft/hwALE-H:6.0/MRA58K/C02B903:user/release-keys
