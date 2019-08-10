@@ -38,6 +38,7 @@ PRODUCT_GMS_CLIENTID_BASE := android-huawei
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT="Huawei/ALE-L21/hwALE-H:6.0/HuaweiALE-L21/C432B596:user/release-keys" \
-    PRIVATE_BUILD_DESC="ALE-L21-user 6.0 HuaweiALE-L21 C432B596 release-keys" \
+    PRIVATE_BUILD_DESC="hi6210sft-user 6.0 MRA58K C02B903 release-keys" \
     TARGET_DEVICE=hi6210sft
+
+BUILD_FINGERPRINT := Huawei/hi6210sft/hwALE-H:6.0/MRA58K/C02B903:user/release-keys
