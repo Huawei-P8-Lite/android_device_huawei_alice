@@ -1,0 +1,39 @@
+From 54bd87f6a26dec62f24f49d47d46c776827db241 Mon Sep 17 00:00:00 2001
+From: Thespartann <danilastefan69@yahoo.ro>
+Date: Fri, 23 Nov 2018 17:07:19 +0200
+Subject: [PATCH] bionic: Fix GPS
+
+Credits to Huawei-Dev <surdu_petru@yahoo.com> for the fix
+
+Signed-off-by: Thespartann <danilastefan69@yahoo.ro>
+---
+ libc/bionic/__vsprintf_chk.cpp | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/libc/bionic/__vsprintf_chk.cpp b/libc/bionic/__vsprintf_chk.cpp
+index 5914026b0..aee81ae46 100644
+--- a/libc/bionic/__vsprintf_chk.cpp
++++ b/libc/bionic/__vsprintf_chk.cpp
+@@ -48,11 +48,13 @@ extern "C" int __vsprintf_chk(char* dest, int /*flags*/,
+                               size_t dest_len_from_compiler, const char* format, va_list va) {
+   int result = vsnprintf(dest, dest_len_from_compiler, format, va);
+   if ((size_t) result >= dest_len_from_compiler) {
+-    __fortify_chk_fail("vsprintf: prevented write past end of buffer", 0);
++    //__fortify_chk_fail("vsprintf: prevented write past end of buffer", 0);
++	result = (int)dest_len_from_compiler - 1;
+   }
+   return result;
+ }
+ 
++
+ /*
+  * Runtime implementation of __builtin____sprintf_chk.
+  *
+@@ -72,3 +74,4 @@ extern "C" int __sprintf_chk(char* dest, int flags,
+   va_end(va);
+   return result;
+ }
++
+-- 
+2.20.1
+

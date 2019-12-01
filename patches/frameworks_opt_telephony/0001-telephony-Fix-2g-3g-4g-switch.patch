@@ -1,0 +1,43 @@
+From 5ef99cb7cbb1514fc45a70ed537d197dffb0a4b2 Mon Sep 17 00:00:00 2001
+From: Meticulus <theonejohnnyd@gmail.com>
+Date: Fri, 23 Nov 2018 16:40:38 +0200
+Subject: [PATCH] telephony: Fix 2g/3g/4g switch
+
+"-Our proprietary RIL does not support "GET_HARDWARE_CAPABILITIES"
+which Phone.java uses to determine what "modes" are supported. The
+idea being to check to make sure that the ril supports 2g (for example)
+before switching to that mode. This patch just removes the check
+and will assume that the device supports what ever mode you set."
+
+Signed-off-by: Thespartann <danilastefan69@yahoo.ro>
+---
+ src/java/com/android/internal/telephony/Phone.java | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/java/com/android/internal/telephony/Phone.java b/src/java/com/android/internal/telephony/Phone.java
+index 772aa395..26ee7476 100644
+--- a/src/java/com/android/internal/telephony/Phone.java
++++ b/src/java/com/android/internal/telephony/Phone.java
+@@ -1855,7 +1855,7 @@ public abstract class Phone extends Handler implements PhoneInternalInterface {
+         // Only set preferred network types to that which the modem supports
+         int modemRaf = getRadioAccessFamily();
+         int rafFromType = RadioAccessFamily.getRafFromNetworkType(networkType);
+-
++/*
+         if (modemRaf == RadioAccessFamily.RAF_UNKNOWN
+                 || rafFromType == RadioAccessFamily.RAF_UNKNOWN) {
+             Rlog.d(LOG_TAG, "setPreferredNetworkType: Abort, unknown RAF: "
+@@ -1869,8 +1869,8 @@ public abstract class Phone extends Handler implements PhoneInternalInterface {
+             }
+             return;
+         }
+-
+-        int filteredRaf = (rafFromType & modemRaf);
++*/
++        int filteredRaf = (rafFromType);
+         int filteredType = RadioAccessFamily.getNetworkTypeFromRaf(filteredRaf);
+ 
+         Rlog.d(LOG_TAG, "setPreferredNetworkType: networkType = " + networkType
+-- 
+2.20.1
+

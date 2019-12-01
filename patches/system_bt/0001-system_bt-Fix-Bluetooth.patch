@@ -1,0 +1,28 @@
+From 011c84a0107de5a75779c79d7947b3a2447d8b8d Mon Sep 17 00:00:00 2001
+From: Meticulus <theonejohnnyd@gmail.com>
+Date: Fri, 23 Nov 2018 16:55:57 +0200
+Subject: [PATCH] system_bt: Fix Bluetooth
+
+Signed-off-by: Thespartann <danilastefan69@yahoo.ro>
+---
+ hci/src/hci_layer.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/hci/src/hci_layer.c b/hci/src/hci_layer.c
+index 364164520..b44882604 100644
+--- a/hci/src/hci_layer.c
++++ b/hci/src/hci_layer.c
+@@ -313,6 +313,10 @@ static void transmit_command(BT_HDR* command,
+ 
+   uint8_t* stream = command->data + command->offset;
+   STREAM_TO_UINT16(wait_entry->opcode, stream);
++  if(wait_entry->opcode == 0x40f) {
++	osi_free(wait_entry);
++	return;
++  }
+   wait_entry->complete_callback = complete_callback;
+   wait_entry->status_callback = status_callback;
+   wait_entry->command = command;
+-- 
+2.20.1
+
