@@ -1,23 +1,21 @@
 # Sepolicy Huawei P8Lite
 
-/system/vendor/bin/agnsscontrol              			u:object_r:hi110x_daemon_exec:s0
-/system/vendor/bin/agnsslog              			u:object_r:hi110x_daemon_exec:s0
-/system/vendor/bin/atcmdserver					u:object_r:atcmdserver_exec:s0
-/system/vendor/bin/diagserver					u:object_r:diagserver_exec:s0
-/system/vendor/bin/gnss_engine           			u:object_r:hi110x_daemon_exec:s0
-/system/vendor/bin/hi110x_dump           			u:object_r:hi110x_daemon_exec:s0
-/system/vendor/bin/hi110x_except_logd    			u:object_r:hi110x_daemon_exec:s0
-/system/vendor/bin/hi110x_logd           			u:object_r:hi110x_daemon_exec:s0
-/system/vendor/bin/lmk_config.sh				u:object_r:lmk_config_exec:s0
-/system/vendor/bin/logserver					u:object_r:logserver_exec:s0
-/system/vendor/bin/mac_addr_normalization			u:object_r:mac_addr_normalization_exec:s0
-/system/vendor/bin/oam_app               			u:object_r:hi110x_daemon_exec:s0
-/system/vendor/bin/octty                 			u:object_r:hi110x_daemon_exec:s0
-/system/vendor/bin/set_log		 			u:object_r:hi110x_daemon_exec:s0
-/system/vendor/bin/start_connectivity_hisi  			u:object_r:hi110x_daemon_exec:s0
-/system/vendor/bin/gnss_supl20clientd_hisi    			u:object_r:hi110x_daemon_exec:s0
-/system/vendor/bin/thermal-daemon                              u:object_r:thermal-daemon_exec:s0
+/vendor/bin/agnsscontrol                                u:object_r:hi110x_daemon_exec:s0
+/vendor/bin/agnsslog                                    u:object_r:hi110x_daemon_exec:s0
+/vendor/bin/atcmdserver					u:object_r:atcmdserver_exec:s0
+/vendor/bin/diagserver					u:object_r:diagserver_exec:s0
+/vendor/bin/gnss_engine                                 u:object_r:hi110x_daemon_exec:s0
+/vendor/bin/hi110x_dump                                 u:object_r:hi110x_daemon_exec:s0
+/vendor/bin/hi110x_except_logd                          u:object_r:hi110x_daemon_exec:s0
+/vendor/bin/hi110x_logd                                 u:object_r:hi110x_daemon_exec:s0
+/vendor/bin/lmk_config.sh				u:object_r:lmk_config_exec:s0
+/vendor/bin/logserver					u:object_r:logserver_exec:s0
+/vendor/bin/mac_addr_normalization			u:object_r:mac_addr_normalization_exec:s0
+/vendor/bin/oam_app                                     u:object_r:hi110x_daemon_exec:s0
+/vendor/bin/octty                                       u:object_r:hi110x_daemon_exec:s0
+/vendor/bin/set_log                                     u:object_r:hi110x_daemon_exec:s0
+/vendor/bin/start_connectivity_hisi                     u:object_r:hi110x_daemon_exec:s0
+/vendor/bin/gnss_supl20clientd_hisi                     u:object_r:hi110x_daemon_exec:s0
+/vendor/bin/thermal-daemon                              u:object_r:thermal-daemon_exec:s0
 
-/system/vendor/xbin/gnss_watchlssd_thirdparty			u:object_r:hi110x_daemon_exec:s0
-
-
+/vendor/xbin/gnss_watchlssd_thirdparty			u:object_r:hi110x_daemon_exec:s0
