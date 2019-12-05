@@ -58,9 +58,6 @@ on init
 
     symlink /dev/block/platform/f723d000.dwmmc0 /dev/block/platform/hi_mci.0
 
-    mkdir /dev/frz
-    mount cgroup none /dev/frz freezer
-
     chown logd system /dev/hwlog_switch
     chmod 0660 /dev/hwlog_switch
 
@@ -104,19 +101,6 @@ on init
     chmod 0660 /dev/ttyAMA0
     chown media media /dev/anc_hs
     chmod 0660 /dev/anc_hs
-
-    mkdir /sys/fs/cgroup/pids 0750 root system
-    mount cgroup none /sys/fs/cgroup/pids pids
-    mkdir /sys/fs/cgroup/pids/unconfirm_app 0750 root system
-    chown root system /sys/fs/cgroup/pids/unconfirm_app/cgroup.procs
-    chmod 0660 /sys/fs/cgroup/pids/unconfirm_app/cgroup.procs
-    chown root system /sys/fs/cgroup/pids/unconfirm_app/tasks
-    chmod 0660 /sys/fs/cgroup/pids/unconfirm_app/tasks
-    chown root system /sys/fs/cgroup/pids/unconfirm_app/pids.group_limit
-    chmod 0660 /sys/fs/cgroup/pids/unconfirm_app/pids.group_limit
-    chown root system /sys/fs/cgroup/pids/unconfirm_app/cgroup.event_control
-    chmod 0220 /sys/fs/cgroup/pids/unconfirm_app/cgroup.event_control
-    chmod 0220 /sys/fs/cgroup/pids/cgroup.event_control
 
     chown system system /dev/memory_throughput
     chown system system /sys/class/devfreq/ddrfreq/ddr_bandwidth
