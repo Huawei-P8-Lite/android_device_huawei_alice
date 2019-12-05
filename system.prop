@@ -33,7 +33,6 @@ ro.com.android.mobiledata=false
 # Display
 ro.sf.lcd_density=320
 ro.opengles.version=131072
-persist.media.treble_omx=false
 
 # Make sdcards visibile in StorageManager
 persist.sys.adoptable_fbe=true
