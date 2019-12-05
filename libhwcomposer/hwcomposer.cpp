@@ -28,7 +28,7 @@
 #include <pthread.h>
 #include <sys/ioctl.h>
 #define LOG_TAG "Meticulus HWComposer"
-#include <cutils/log.h>
+#include <log/log.h>
 #include <cutils/atomic.h>
 
 #include <hardware/hwcomposer.h>
