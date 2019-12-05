@@ -13,13 +13,15 @@ ro.config.vc_call_vol_steps=7
 ro.bt.bdaddr_path=/data/misc/bluedroid/macbt
 
 # Camera
+camera.hal1.packagelist=com.google.android.GoogleCamera
 camera2.portability.force_api=1
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
 ro.camera.beauty.algo.doc=1
 ro.hwcamera.use.videosize.1080p=true
 ro.hwcamera.previeweffects=true
 ro.camera.config.burstcount=10
 persist.camera.cpp.duplication=false
-camera.hal1.packagelist=com.google.android.GoogleCamera
 
 # Connectivity
 ro.connectivity.sta_p2p_coex=false
@@ -31,6 +33,7 @@ ro.com.android.mobiledata=false
 # Display
 ro.sf.lcd_density=320
 ro.opengles.version=131072
+persist.media.treble_omx=false
 
 # Make sdcards visibile in StorageManager
 persist.sys.adoptable_fbe=true

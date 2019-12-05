@@ -62,19 +62,9 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-service \
     camera.device@3.2-impl
 
-# Camera props
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.stagefright.legacyencoder=true \
-    media.stagefright.less-secure=true \
-    camera.disable_treble=1
-
 # Configstore
 PRODUCT_PACKAGES += \
     android.hardware.configstore@1.0-service
-
-# Default OMX service to non-Treble
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.media.treble_omx=false
 
 # DRM
 PRODUCT_PACKAGES += \
