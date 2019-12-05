@@ -40,3 +40,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE=hi6210sft
 
 BUILD_FINGERPRINT := Huawei/hi6210sft/hwALE-H:6.0/MRA58K/C02B903:user/release-keys
+
+# Vendor security patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lineage.build.vendor_security_patch=2018-05-05
