@@ -12,7 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/huawei/alice/full_alice.mk)
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_m.mk)
+
+# Inherit device configurations
+$(call inherit-product, $(LOCAL_PATH)/device.mk)
 
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
@@ -21,10 +27,15 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
-PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model
-PRODUCT_GMS_CLIENTID_BASE := android-huawei
-
+# Device identifications
+PRODUCT_DEVICE := alice
 PRODUCT_NAME := lineage_alice
+PRODUCT_BRAND := Huawei
+PRODUCT_MANUFACTURER := HUAWEI
+PRODUCT_MODEL := HUAWEI-P8Lite
+
+PRODUCT_GMS_CLIENTID_BASE := android-huawei
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_FINGERPRINT="Huawei/ALE-L21/hwALE-H:6.0/HuaweiALE-L21/C432B596:user/release-keys" \
