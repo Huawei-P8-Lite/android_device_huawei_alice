@@ -97,6 +97,9 @@ TARGET_KERNEL_CONFIG := alice_defconfig
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
+# Malloc
+MALLOC_SVELTE := true
+
 # NFC
 BOARD_NFC_CHIPSET := pn547
 NXP_CHIP_TYPE := 1
