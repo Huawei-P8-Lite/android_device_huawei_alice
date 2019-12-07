@@ -63,7 +63,8 @@ PRODUCT_PACKAGES += \
 
 # Graphics
 PRODUCT_PACKAGES += \
-    hwcomposer.hi6210sft
+    hwcomposer.hi6210sft \
+    power.hi6210sft
 
 # Keypad
 PRODUCT_PACKAGES += \
