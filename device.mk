@@ -61,6 +61,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libtinyxml
 
+# Graphics
+PRODUCT_PACKAGES += \
+    hwcomposer.hi6210sft
+
 # Keypad
 PRODUCT_PACKAGES += \
     cyttsp5_mt.kl \
