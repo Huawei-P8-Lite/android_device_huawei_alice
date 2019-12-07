@@ -21,7 +21,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#define LOG_TAG "Meticulus Power"
 #include <utils/Log.h>
 #include <cutils/properties.h>
 #include <hardware/hardware.h>
@@ -63,7 +62,7 @@ static void write_string(const char * path, const char * value) {
 
 }
 
-static void power_init(struct power_module *module)
+static void power_init(void)
 {
     stock_power = property_get_bool(STOCK_PROP,false) ? 1 : 0;
     if(stock_power) {
@@ -95,11 +94,11 @@ static void power_init(struct power_module *module)
 
 }
 
-static void power_set_interactive(struct power_module *module, int on) {
+static int get_feature(feature_t feature)
     if(stock_power && stock_power_module && ((power_module_t *)stock_power_module)->setInteractive) {
         ALOGI("->Stock Power HAL: setInteractive %d", on);
 	    return ((power_module_t *)stock_power_module)->setInteractive((power_module_t *)stock_power_module,on);
-    } 
+    }
 
     ALOGI("setInteractive %d", on);
     if(on && !low_power) {
@@ -179,7 +178,7 @@ static void power_hint_low_power(int on) {
     }
 }
 
-static void power_hint_set_profile(struct power_module *module, int p) {
+static void set_feature(feature_t feature, int state)
 
     switch(p) {
 	case 0:
