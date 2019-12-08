@@ -113,7 +113,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilts/libnfc-brcm-alice.conf:system/etc/libnfc-brcm-alice.conf \
     $(LOCAL_PATH)/prebuilts/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
     $(LOCAL_PATH)/prebuilts/libnfc-nxp-alice.conf:system/etc/libnfc-nxp-alice.conf \
-    $(LOCAL_PATH)/prebuilts/nfcee_access.xml:system/etc/nfcee_access.xml
+    $(LOCAL_PATH)/prebuilts/nfcee_access_debug.xml:system/etc/nfcee_access.xml
 
 # OMX
 PRODUCT_COPY_FILES += \
