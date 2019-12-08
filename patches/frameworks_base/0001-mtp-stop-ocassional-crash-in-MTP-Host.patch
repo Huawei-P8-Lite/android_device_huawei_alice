@@ -1,0 +1,32 @@
+From aa3a5924908e3d5c73baeeec2e797679e3379a78 Mon Sep 17 00:00:00 2001
+From: Meticulus <theonejohnnyd@gmail.com>
+Date: Sat, 11 Feb 2017 10:50:45 -0600
+Subject: [PATCH] mtp: Stop ocassional crash in MTP Host
+
+-This was a logical fix so not quite sure what is happening
+here. Looks like 'appfuse' is something that vold is supposed
+to do. I suspect this is something to do with using external
+storage as 'internal storage' for apps. Instead of just
+catch IOExceptions we'll catch them all and prevent a 'fatal'
+crash.
+
+Change-Id: Icd663604722778185b6ca43c04edc259a4a160ea
+---
+ .../MtpDocumentsProvider/src/com/android/mtp/MtpDocumentsProvider.java  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/packages/MtpDocumentsProvider/src/com/android/mtp/MtpDocumentsProvider.java b/packages/MtpDocumentsProvider/src/com/android/mtp/MtpDocumentsProvider.java
+index 1823711..e810b0a 100644
+--- a/packages/MtpDocumentsProvider/src/com/android/mtp/MtpDocumentsProvider.java
++++ b/packages/MtpDocumentsProvider/src/com/android/mtp/MtpDocumentsProvider.java
+@@ -134,7 +134,7 @@ public class MtpDocumentsProvider extends DocumentsProvider {
+         // TODO: Mount AppFuse on demands.
+         try {
+             mAppFuse.mount(getContext().getSystemService(StorageManager.class));
+-        } catch (IOException error) {
++        } catch (Exception error) {
+             Log.e(TAG, "Failed to start app fuse.", error);
+             return false;
+         }
+-- 
+2.20.1
