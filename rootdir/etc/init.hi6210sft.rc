@@ -713,37 +713,37 @@ service charger /charger
     critical
     seclabel u:r:charger:s0
 
-service ril-daemon /vendor/bin/hw/rild
-    class late_start
-    socket rild stream 660 root radio
-    socket rildm2 stream 660 root radio
-    socket rildm3 stream 660 root radio
-    socket rildi stream 660 root radio
-    socket rildi2 stream 660 root radio
-    socket rildc1 stream 660 radio system
-    socket rildc2 stream 660 radio system
-    socket rildc3 stream 660 radio system
+#service ril-daemon /vendor/bin/hw/rild
+#    class late_start
+#    socket rild stream 660 root radio
+#    socket rildm2 stream 660 root radio
+#    socket rildm3 stream 660 root radio
+#    socket rildi stream 660 root radio
+#    socket rildi2 stream 660 root radio
+#    socket rildc1 stream 660 radio system
+#    socket rildc2 stream 660 radio system
+#    socket rildc3 stream 660 radio system
     
-    socket rild-debug stream 660 radio system
-    user radio
-    group radio cache inet misc audio log readproc wakelock net_raw
-    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+#    socket rild-debug stream 660 radio system
+#    user radio
+#    group radio cache inet misc audio log readproc wakelock net_raw
+#    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
-service ril-daemon1 /vendor/bin/hw/rild -c 1
-    class late_start
-    socket rilds2 stream 660 root radio
-    socket rild-debug1 stream 660 radio system
-    socket rild-balong-test stream 660 radio system
-    user radio
-    group radio cache inet misc audio log readproc wakelock net_raw
-    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+#service ril-daemon1 /vendor/bin/hw/rild -c 1
+#    class late_start
+#    socket rilds2 stream 660 root radio
+#    socket rild-debug1 stream 660 radio system
+#    socket rild-balong-test stream 660 radio system
+#    user radio
+#    group radio cache inet misc audio log readproc wakelock net_raw
+#    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
-on property:rild.rild1_ready_to_start=true
-    start ril-daemon1
-    symlink /dev/socket/rilds2 /dev/socket/rild2
+#on property:rild.rild1_ready_to_start=true
+#    start ril-daemon1
+#    symlink /dev/socket/rilds2 /dev/socket/rild2
 
-on property:rild.rild1_ready_to_start=false
-    symlink /dev/socket/rildm2 /dev/socket/rild2
+#on property:rild.rild1_ready_to_start=false
+#    symlink /dev/socket/rildm2 /dev/socket/rild2
 
 on property:ro.hardware.alter=*
     write /proc/sys/kernel/hardware_alter ${ro.hardware.alter}
@@ -976,9 +976,9 @@ service nfc_hal_ext_service /vendor/bin/hw/vendor.huawei.hardware.nfc@1.0-servic
     group nfc
     seclabel u:object_r:init:s0
 
-on property:init.svc.ril-daemon=restarting
-    stop ril-daemon
-    trigger start_main_class
-    trigger start_latestart_class
-    trigger data_ready
-    start ril-daemon
+#on property:init.svc.ril-daemon=restarting
+#    stop ril-daemon
+#    trigger start_main_class
+#    trigger start_latestart_class
+#    trigger data_ready
+#    start ril-daemon
