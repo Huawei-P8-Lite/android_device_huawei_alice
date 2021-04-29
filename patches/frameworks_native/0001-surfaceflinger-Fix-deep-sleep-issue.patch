@@ -10,10 +10,10 @@ Signed-off-by: Thespartann <danilastefan69@yahoo.ro>
  services/surfaceflinger/SurfaceFlinger_hwc1.cpp | 12 ++++++++++++
  1 file changed, 12 insertions(+)
 
-diff --git a/services/surfaceflinger/SurfaceFlinger_hwc1.cpp b/services/surfaceflinger/SurfaceFlinger_hwc1.cpp
+diff --git a/services/surfaceflinger/SurfaceFlinger.cpp b/services/surfaceflinger/SurfaceFlinger.cpp
 index e0b2d55b8..e9ea8baeb 100644
---- a/services/surfaceflinger/SurfaceFlinger_hwc1.cpp
-+++ b/services/surfaceflinger/SurfaceFlinger_hwc1.cpp
+--- a/services/surfaceflinger/SurfaceFlinger.cpp
++++ b/services/surfaceflinger/SurfaceFlinger.cpp
 @@ -96,6 +96,9 @@
  
  #define DISPLAY_COUNT       1
